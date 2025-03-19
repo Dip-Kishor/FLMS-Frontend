@@ -9,7 +9,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 const HeroBanner = () => {
   return (
     <div className="grid lg:grid-cols-2 h-[95vh]">
-      <div className="bg-[#dbe9e2] flex flex-col items-center justify-center relative w-full">
+      <div className="bg-[#F2ECDB] flex flex-col items-center justify-center relative w-full">
         <img
           src="/football-fire.png"
           alt="grain"
@@ -51,7 +51,7 @@ const HeroBanner = () => {
             alt="Stadium"
         />
 
-  <div className="absolute top-50 left-30 bg-transparent p-4 rounded shadow-lg text-center">
+  {/* <div className="absolute top-50 left-30 bg-transparent p-4 rounded shadow-lg text-center">
     <img
       className="w-50 h-50 object-cover rounded"
       src="/Sujan-Photoroom.png"
@@ -69,7 +69,7 @@ const HeroBanner = () => {
     />
    <p className="text-2xl font-bold text-white">Dip Regmi</p>
    <p className="text-lg font-bold text-white">Season 2 Winner</p>
-  </div>
+  </div> */}
 </div>
 
     </div>

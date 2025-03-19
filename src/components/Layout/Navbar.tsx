@@ -36,10 +36,10 @@ const Navbar: React.FC = () => {
     setScrolled(offset > 100);
   };
   useEffect(() => {
-    localStorage.getItem("token");
-    setToken(localStorage.getItem("token"));
+    sessionStorage.getItem("token");
+    setToken(sessionStorage.getItem("token"));
     window.addEventListener("scroll", handleScroll);
-    const storedUserData = localStorage.getItem("userData");
+    const storedUserData = sessionStorage.getItem("userData");
     if (storedUserData) {
       try {
         setUserData(JSON.parse(storedUserData));
@@ -79,6 +79,8 @@ const Navbar: React.FC = () => {
       if (response.data.status === 4) {
         localStorage.removeItem("token");
         localStorage.removeItem("userData");
+        sessionStorage.clear()
+        clearCookies();
         showPopup(response.data.message, "success");
         router.replace("/");
         window.location.href = "/";
@@ -86,16 +88,28 @@ const Navbar: React.FC = () => {
         showPopup(response.data.message, "warning");
       }
     } catch (error) {
+      setIsLoading(false); 
       console.error("Error during login:", error);
-      showPopup("An error occurred during login.", "warning");
+      showPopup("Network error occurred.", "warning");
     } finally {
       setIsLoading(false); // Hide loading indicator
+    }
+    function clearCookies() {
+      // Get all cookies
+      const cookies = document.cookie.split(";");
+    
+      // Loop through cookies and set expiry to the past to remove them
+      cookies.forEach((cookie) => {
+        const cookieName = cookie.split("=")[0].trim();
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname};`;
+      });
     }
   };
 
   return (
     <div
-      className={`w-full bg-[#F2ECDB] border-b-[1px] border-[#4C6F35] z-50 fixed top-0 left-0 right-0 transition-transform duration-300 ease-in-out ${
+      className={`w-full bg-[#f4f3f0] border-b-[1px] border-[#4C6F35] z-50 fixed top-0 left-0 right-0 transition-transform duration-300 ease-in-out ${
         scrolled ? "shadow-md" : ""
       }`}
     >
@@ -103,7 +117,7 @@ const Navbar: React.FC = () => {
         <div>
           <Link href="/">
             <img
-              src="/DB Pro League.webp"
+              src="/DBProLeague.png"
               alt="logo"
               className={`absolute top-0 max-lg:w-[100px] w-[200px] bg-transparent transition-all duration-300 ease-in-out ${
                 scrolled ? "top-[-60px]" : "top-0"

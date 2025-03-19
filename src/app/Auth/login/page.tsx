@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import {port} from "@/constants/appl.constant";
 import Logo from "@/components/UI/Logo";
@@ -8,7 +8,10 @@ import { useRouter } from "next/navigation";
 // import Cookies from "js-cookie";
 import Link from "next/link";
 import { usePopup } from "@/components/UI/Popup";
+import { useFlmsPopup } from "@/components/UI/FLMS.Popup";
 import LoadingOverlay from "@/components/UI/LoadingSpinner";
+import Cookies from "js-cookie";
+import { useSearchParams } from "next/navigation";
 
 
 type userData = {
@@ -21,8 +24,16 @@ const page = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
   const { showPopup } = usePopup();
+  const { showFlmsPopup } = useFlmsPopup();
     const [loading, setLoading] = useState(false);
-  
+    const searchParams = useSearchParams();
+    const message = searchParams.get("message");
+    
+  useEffect(() => {
+    if (message) {
+      showPopup(message, "warning");
+    }
+  }, []);
   const handleSubmit = async (e: any) => {
     setLoading(true); // Show loading indicator
     e.preventDefault();
@@ -38,10 +49,33 @@ const page = () => {
   
         if (response.data.status === 4) {
             setLoading(false);
-          localStorage.setItem("token", response.data.data.token);
-          localStorage.setItem("userData", JSON.stringify(response.data.data));
-          showPopup(response.data.message, "success");
-          window.location.href = "/";
+            const token = response.data.data.token;
+            const userData = response.data.data;
+            console.log(token);
+            const expirationTime = Date.now() + 24 * 60 * 60 * 1000; 
+            // Cookies.set("token", token, { expires: 1 / 8640 }); 
+            Cookies.set("token_expiry", expirationTime.toString(), 
+            { expires: 1 ,
+              path:"/" 
+            });
+            Cookies.set("token", token, {
+              expires: 1,
+              path: "/",
+            });
+            Cookies.set(
+              "userData",
+              JSON.stringify({
+                email: response.data.data.email,
+                name: response.data.data.name,
+                role: response.data.data.role,
+              }),
+              { expires: 1, path: "/" }
+            );
+            sessionStorage.setItem("token", token);
+            sessionStorage.setItem("token_expiry", expirationTime.toString());
+            sessionStorage.setItem("userData", JSON.stringify(userData));
+          showFlmsPopup(response.data.message, "success","/");
+          // window.location.href = "/";
         } else {
             setLoading(false);
           showPopup(response.data.message, "warning");

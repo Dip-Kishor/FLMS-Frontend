@@ -15,7 +15,7 @@ const navLinks = [
 const Footer = () => {
   return (
     <>
-      <footer className="bg-[#4C6F35] py-10">
+      <footer className="bg-[#345120] py-10">
         <div className="container mx-auto flex items-center justify-between">
           <div>
             <Logo />
