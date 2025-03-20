@@ -1,4 +1,5 @@
 "use client";
+// import { Suspense } from "react";
 import React, { useState,useEffect } from "react";
 import axios from "axios";
 import {port} from "@/constants/appl.constant";
@@ -9,7 +10,7 @@ import { usePopup } from "@/components/UI/Popup";
 import { useFlmsPopup } from "@/components/UI/FLMS.Popup";
 import LoadingOverlay from "@/components/UI/LoadingSpinner";
 import Cookies from "js-cookie";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 
 
 const Page = () => {
@@ -18,14 +19,14 @@ const Page = () => {
   const { showPopup } = usePopup();
   const { showFlmsPopup } = useFlmsPopup();
     const [loading, setLoading] = useState(false);
-    const searchParams = useSearchParams();
-    const message = searchParams.get("message");
+    // const searchParams = useSearchParams();
+    // const message = searchParams.get("message");
     
-  useEffect(() => {
-    if (message) {
-      showPopup(message, "warning");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (message) {
+  //     showPopup(message, "warning");
+  //   }
+  // }, []);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true); // Show loading indicator
     e.preventDefault();
