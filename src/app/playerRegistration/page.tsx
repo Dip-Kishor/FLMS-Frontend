@@ -11,8 +11,9 @@ import axios from "axios";
 const Page = () => {
   const { showPopup } = usePopup();
   const { showFlmsPopup } = useFlmsPopup();
-  const [imageFile,setFile]= useState();
-  const [teamImageFile,setTeamFile]= useState();
+  const [imageFile, setFile] = useState<File | null>(null);
+
+  const [teamImageFile,setTeamFile]= useState<File | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,12 +30,14 @@ const Page = () => {
 
   const [loading, setLoading] = useState(false);
 
-const saveFile = (e:React.ChangeEvent<HTMLInputElement>)=>{
-  setFile(e.target.files[0]);
-} 
-const saveTeamFile = (e:React.ChangeEvent<HTMLInputElement>)=>{
-  setTeamFile(e.target.files[0]);
-}
+  const saveFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    setFile(file);
+  };
+  
+  const saveTeamFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTeamFile(e.target.files ? e.target.files[0] : null);
+  }
 
   const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     
