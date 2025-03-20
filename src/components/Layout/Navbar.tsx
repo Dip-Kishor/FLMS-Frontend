@@ -63,8 +63,8 @@ const Navbar: React.FC = () => {
     { name: "Players", href: "/players" },
   ];
 
-  const handleLogout = async (e) => {
-    e.preventDefault();
+  const handleLogout = async () => {
+    // e.preventDefault();
 
     
     
