@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
     } catch (error) {
       setIsLoading(false); 
       console.error("Error during login:", error);
-      showPopup("Network error occurred.", "warning");
+      showPopup("Error occurred.", "warning");
     } finally {
       setIsLoading(false); // Hide loading indicator
     }
