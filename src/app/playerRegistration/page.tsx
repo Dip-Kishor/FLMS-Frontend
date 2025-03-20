@@ -29,21 +29,20 @@ const Page = () => {
 
   const [loading, setLoading] = useState(false);
 
-const saveFile = (e)=>{
+const saveFile = (e:React.ChangeEvent<HTMLInputElement>)=>{
   setFile(e.target.files[0]);
-}
-const saveTeamFile = (e)=>{
+} 
+const saveTeamFile = (e:React.ChangeEvent<HTMLInputElement>)=>{
   setTeamFile(e.target.files[0]);
 }
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     
         setFormData({ ...formData, [e.target.name]: e.target.value });
     
 };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     setLoading(true);
-    e.preventDefault();
     try {
       const formDataToSend = new FormData();
       formDataToSend.append("name", formData.name); 
