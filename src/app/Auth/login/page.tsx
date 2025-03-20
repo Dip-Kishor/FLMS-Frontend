@@ -16,7 +16,6 @@ import { useSearchParams } from "next/navigation";
 const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
   const { showPopup } = usePopup();
   const { showFlmsPopup } = useFlmsPopup();
     const [loading, setLoading] = useState(false);
@@ -28,7 +27,7 @@ const Page = () => {
       showPopup(message, "warning");
     }
   }, []);
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e) => {
     setLoading(true); // Show loading indicator
     e.preventDefault();
     const payload = { email, password };
