@@ -5,10 +5,10 @@ export function middleware(req: NextRequest) {
 
   const url = req.nextUrl.clone();
   const token = req.cookies.get("token")?.value;
-  const userDataCookie = req.cookies.get("userData")?.value;
+  // const userDataCookie = req.cookies.get("userData")?.value;
   const token_expiry= req.cookies.get("token_expiry")?.value;
 console.log(token);
-  const userData = userDataCookie ? JSON.parse(userDataCookie) : null;
+  // const userData = userDataCookie ? JSON.parse(userDataCookie) : null;
 
   if (url.pathname.startsWith("/playerRegistration")) {
     if (
