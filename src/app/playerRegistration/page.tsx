@@ -69,7 +69,7 @@ const saveTeamFile = (e)=>{
       }
     } catch (error) {
       setLoading(false);
-      showPopup("An error occurred during register.", "warning");
+      showPopup("An error occurred during register...", "warning");
       console.error("Error:", error); // Log the error for debugging
     }
   };
