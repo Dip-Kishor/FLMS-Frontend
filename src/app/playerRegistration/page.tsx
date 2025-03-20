@@ -56,12 +56,6 @@ const saveTeamFile = (e:any)=>{
       formDataToSend.append("imageFile", imageFile); 
       formDataToSend.append("teamImageFile", teamImageFile); 
       
-  
-      // Log FormData for debugging
-      for (let [key, value] of formDataToSend.entries()) {
-        console.log(key, value);
-      }
-      
       const response = await axios.post(`${port}/playerRegistrationApi/register`,formDataToSend, {
         withCredentials: true,
       });
