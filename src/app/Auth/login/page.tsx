@@ -5,7 +5,6 @@ import {port} from "@/constants/appl.constant";
 import Logo from "@/components/UI/Logo";
 import LoginButton from "@/components/UI/LoginButton";
 import { useRouter } from "next/navigation";
-// import Cookies from "js-cookie";
 import Link from "next/link";
 import { usePopup } from "@/components/UI/Popup";
 import { useFlmsPopup } from "@/components/UI/FLMS.Popup";
@@ -14,12 +13,7 @@ import Cookies from "js-cookie";
 import { useSearchParams } from "next/navigation";
 
 
-type userData = {
-  email: string;
-  name: string;
-  role: string;
-};
-const page = () => {
+const Page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -141,4 +135,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

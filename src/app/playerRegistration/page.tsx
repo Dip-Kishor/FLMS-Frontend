@@ -4,13 +4,16 @@ import { port } from "@/constants/appl.constant";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import LoginButton from "@/components/UI/LoginButton";
-import Logo from "@/components/UI/Logo";
 import { usePopup } from "@/components/UI/Popup";
+import { useFlmsPopup } from "@/components/UI/FLMS.Popup";
+
 import axios from "axios";
 
 const Page = () => {
   const { showPopup } = usePopup();
+  const { showFlmsPopup } = useFlmsPopup();
   const [imageFile,setFile]= useState();
+  const [teamImageFile,setTeamFile]= useState();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,6 +33,9 @@ const Page = () => {
 const saveFile = (e:any)=>{
   setFile(e.target.files[0]);
 }
+const saveTeamFile = (e:any)=>{
+  setTeamFile(e.target.files[0]);
+}
   const router = useRouter();
 
   const handleChange = (e: any) => {
@@ -48,6 +54,7 @@ const saveFile = (e:any)=>{
       formDataToSend.append("eFootballId", formData.efootballId);
       formDataToSend.append("inGameName", formData.inGameName); 
       formDataToSend.append("imageFile", imageFile); 
+      formDataToSend.append("teamImageFile", teamImageFile); 
       
   
       // Log FormData for debugging
@@ -63,10 +70,10 @@ const saveFile = (e:any)=>{
   
       if (data.status == 4) {
         setLoading(false);
-        showPopup(data.message, "success");
+        showFlmsPopup(data.message, "success","/");
       } else {
         setLoading(false);
-        showPopup(data.message, "warning");
+        showFlmsPopup(data.message, "warning","/");
       }
     } catch (error) {
       setLoading(false);
@@ -82,7 +89,6 @@ const saveFile = (e:any)=>{
         <div className="w-[1188px] bg-[url('/image4.png')] bg-no-repeat  h-[60vh]">
           <div className="w-[400px] mx-auto bg-white p-10 rounded-md">
             <div className="flex items-center justify-center">
-              {/* <Logo /> */}
             </div>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
               <div className="mb-4">
@@ -184,20 +190,34 @@ const saveFile = (e:any)=>{
                   </div>
                 )}
               </div> */}
+              <div className="flex gap-x-2">
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Image
+                <label className="block text-sm font-medium text-gray-700 [width:95%]">
+                  Player Image
                 </label>
                 <input
                   type="file"
                   // name="imageFile"
                   accept="image/*"
                   onChange={saveFile}
-                  className="mt-1 block w-full p-2 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
+                  className="mt-1 block  p-2 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm [width:100%]"
                   required
                 />
                 </div>
-
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Team Image
+                </label>
+                <input
+                  type="file"
+                  // name="imageFile"
+                  accept="image/*"
+                  onChange={saveTeamFile}
+                  className="mt-1 block [width:100%] p-2 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
+                  required
+                />
+                </div>
+                </div>
               <div className="w-full">
                 <LoginButton name="Register" />
               </div>
