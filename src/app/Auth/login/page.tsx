@@ -1,6 +1,6 @@
 "use client";
 // import { Suspense } from "react";
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {port} from "@/constants/appl.constant";
 import Logo from "@/components/UI/Logo";
