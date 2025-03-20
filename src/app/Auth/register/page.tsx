@@ -22,7 +22,7 @@ const Page = () => {
   
   const router = useRouter();
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
