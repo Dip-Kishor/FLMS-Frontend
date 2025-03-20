@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [token, setToken] = useState<null | string>(null);
+  // const [token, setToken] = useState<null | string>(null);
   const [userData, setUserData] = useState<{
     userName?: string;
     email?: string;
@@ -37,7 +37,8 @@ const Navbar: React.FC = () => {
   };
   useEffect(() => {
     sessionStorage.getItem("token");
-    setToken(sessionStorage.getItem("token"));
+    // const storedToken = sessionStorage.getItem("token");
+    // setToken(sessionStorage.getItem("token"));
     window.addEventListener("scroll", handleScroll);
     const storedUserData = sessionStorage.getItem("userData");
     if (storedUserData) {
@@ -62,7 +63,7 @@ const Navbar: React.FC = () => {
     { name: "Players", href: "/players" },
   ];
 
-  const handleLogout = async (e: any) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
 
     
@@ -184,11 +185,13 @@ const Navbar: React.FC = () => {
                   </div>
                 </div>
                 <button
-                  className="bg-red-500 mt-3 w-full text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600"
-                  onClick={handleLogout}
-                >
-                  Log Out
-                </button>
+  className="bg-red-500 mt-3 w-full text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 disabled:opacity-50"
+  onClick={handleLogout}
+  disabled={isLoading} // Disable button while loading
+>
+  {isLoading ? "Logging Out..." : "Log Out"}
+</button>
+
               </div>
             </div>
           )}

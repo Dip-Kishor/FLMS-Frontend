@@ -1,7 +1,6 @@
 "use client";
 import LoadingOverlay from "@/components/UI/LoadingSpinner";
 import { port } from "@/constants/appl.constant";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import LoginButton from "@/components/UI/LoginButton";
 import { usePopup } from "@/components/UI/Popup";
@@ -30,20 +29,19 @@ const Page = () => {
 
   const [loading, setLoading] = useState(false);
 
-const saveFile = (e:any)=>{
+const saveFile = (e)=>{
   setFile(e.target.files[0]);
 }
-const saveTeamFile = (e:any)=>{
+const saveTeamFile = (e)=>{
   setTeamFile(e.target.files[0]);
 }
-  const router = useRouter();
 
-  const handleChange = (e: any) => {
+  const handleChange = (e) => {
     
         setFormData({ ...formData, [e.target.name]: e.target.value });
     
 };
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
     try {

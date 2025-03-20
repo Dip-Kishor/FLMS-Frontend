@@ -19,18 +19,14 @@ const Page = () => {
     confirmPassword: "",
   });
   const [loading, setLoading] = useState(false);
-  const [modal, setModal] = useState({
-    show: false,
-    message: "",
-    success: false,
-  });
+  
   const router = useRouter();
 
-  const handleChange = (e:any) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
 
@@ -59,7 +55,8 @@ const Page = () => {
       }
     } catch (error) {
       setLoading(false);
-      showPopup("An error occurred during register.", "warning");
+      console.error(error);
+      showPopup("Error during login", "warning");
     }
   };
 

@@ -4,7 +4,6 @@ import axios from "axios";
 import {port} from "@/constants/appl.constant";
 import Logo from "@/components/UI/Logo";
 import LoginButton from "@/components/UI/LoginButton";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { usePopup } from "@/components/UI/Popup";
 import { useFlmsPopup } from "@/components/UI/FLMS.Popup";
