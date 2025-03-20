@@ -44,7 +44,8 @@ const Page = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     
 };
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
     try {
       const formDataToSend = new FormData();
