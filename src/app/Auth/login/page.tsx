@@ -26,7 +26,7 @@ const Page = () => {
       showPopup(message, "warning");
     }
   }, []);
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     setLoading(true); // Show loading indicator
     e.preventDefault();
     const payload = { email, password };
