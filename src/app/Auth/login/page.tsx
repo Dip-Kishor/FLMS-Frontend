@@ -26,7 +26,7 @@ const Page = () => {
       showPopup(message, "warning");
     }
   }, []);
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true); // Show loading indicator
     e.preventDefault();
     const payload = { email, password };
