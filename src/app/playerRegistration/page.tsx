@@ -53,8 +53,14 @@ const Page = () => {
       formDataToSend.append("gender", formData.gender); 
       formDataToSend.append("eFootballId", formData.efootballId);
       formDataToSend.append("inGameName", formData.inGameName); 
-      formDataToSend.append("imageFile", imageFile); 
-      formDataToSend.append("teamImageFile", teamImageFile); 
+      if (imageFile) {
+        formDataToSend.append("imageFile", imageFile);
+      }
+      
+      if (teamImageFile) {
+        formDataToSend.append("teamImageFile", teamImageFile);
+      }
+      
       
       const response = await axios.post(`${port}/playerRegistrationApi/register`,formDataToSend, {
         withCredentials: true,
