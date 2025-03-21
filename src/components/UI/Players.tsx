@@ -41,7 +41,7 @@ interface PlayersProps {
 const Players: React.FC<PlayersProps> = ({ players }) => {
   return (
     <section
-  className="pt-20  min-h-screen bg-[url('/grunge_bg.jpg')] bg-cover bg-center"
+  className="pt-20 min-h-screen bg-[url('/grunge_bg.jpg')] bg-cover bg-center"
   id="players"
 >
   <div className="container mx-auto px-6">
@@ -53,7 +53,7 @@ const Players: React.FC<PlayersProps> = ({ players }) => {
           </h2>
 
     {/* Players List */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-auto px-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-auto px-4 py-5">
       {players.length === 0 ? (
         <p className="text-center text-white text-lg">No players registered.</p>
       ) : (

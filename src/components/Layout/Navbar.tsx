@@ -215,12 +215,15 @@ const Navbar: React.FC = () => {
         <ul className="flex flex-col gap-7">
           {navLinks.map((navLink, index) => (
             <li key={index} className="text-center">
-              <Link href={navLink.href}>{navLink.name}</Link>
+              <Link href={navLink.href}
+              onClick={() => setIsOpen(false)}>{navLink.name} </Link>
             </li>
           ))}
         </ul>
         <div className="py-4 text-center">
+          <Link  href="/Auth/login" onClick={() => setIsOpen(false)}>
           <PrimaryButton name="Login" />
+          </Link>
         </div>
       </div>
     </div>
