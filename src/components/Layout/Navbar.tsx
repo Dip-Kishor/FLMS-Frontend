@@ -65,9 +65,6 @@ const Navbar: React.FC = () => {
 
   const handleLogout = async () => {
     // e.preventDefault();
-
-    
-    
     try {
       setIsLoading(true); // Show loading indicator
       const response = await axios.get(`${port}/userApi/logout`, {
