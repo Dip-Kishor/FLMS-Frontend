@@ -1,5 +1,6 @@
 "use client";
-import LoadingOverlay from "@/components/UI/LoadingSpinner";
+// import LoadingOverlay from "@/components/UI/LoadingSpinner";
+import Loading from "@/components/UI/Loading";
 import { port } from "@/constants/appl.constant";
 import React, { useState } from "react";
 import LoginButton from "@/components/UI/LoginButton";
@@ -85,7 +86,7 @@ const Page = () => {
 
   return (
     <>
-      {loading ? <LoadingOverlay /> : <></>}
+      {loading ? <Loading /> : <></>}
       <div className="min-h-screen flex items-center justify-center bg-[#F2ECDB] bg-cover ">
         <div className="w-[1188px] bg-[url('/image4.png')] bg-no-repeat  h-[60vh]">
           <div className="w-[400px] mx-auto bg-white p-10 rounded-md">

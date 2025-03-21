@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { usePopup } from "@/components/UI/Popup";
@@ -36,12 +36,18 @@ const Page = () => {
     fetchPlayers();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-white">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h2>Registered Players</h2>
-      {loading ? (
-        <p>Loading players...</p>
-      ) : players.length > 0 ? (
+      {players.length > 0 ? (
         <Players players={players} />
       ) : (
         <p>No players found.</p>

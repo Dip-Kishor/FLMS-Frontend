@@ -8,7 +8,8 @@ import LoginButton from "@/components/UI/LoginButton";
 import Link from "next/link";
 import { usePopup } from "@/components/UI/Popup";
 import { useFlmsPopup } from "@/components/UI/FLMS.Popup";
-import LoadingOverlay from "@/components/UI/LoadingSpinner";
+// import LoadingOverlay from "@/components/UI/LoadingSpinner";
+import Loading from "@/components/UI/Loading";
 import Cookies from "js-cookie";
 // import { useSearchParams } from "next/navigation";
 
@@ -84,7 +85,7 @@ const Page = () => {
 
   return (
     <>
-    {loading ? <LoadingOverlay /> : <></>}
+    {loading ? <Loading /> : <></>}
     <div className="min-h-screen flex items-center justify-center bg-[#dbe9e2] bg-cover ">
       <div className="w-[1188px] bg-[url('/image4.png')] bg-no-repeat  h-[50vh]">
         <div className="w-[400px] mx-auto bg-white p-10 rounded-md">
