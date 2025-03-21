@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
             <img
               src="/DBProLeague.png"
               alt="logo"
-              className={`absolute top-0 max-lg:w-[100px] w-[200px] bg-transparent transition-all duration-300 ease-in-out ${
+              className={`absolute top-0 max-lg:w-[100px] w-[150px] bg-transparent transition-all duration-300 ease-in-out ${
                 scrolled ? "top-[-60px]" : "top-0"
               }`}
             />

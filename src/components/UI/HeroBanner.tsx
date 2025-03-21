@@ -11,12 +11,12 @@ const HeroBanner = () => {
     <div className="grid grid-cols-1 lg:grid-cols-2 h-[95vh]">
       {/* Left Side */}
       <div className="bg-[#F2ECDB] flex flex-col items-center justify-center relative w-full pt-20 lg:p-6">
-        <img
+        {/* <img
           src="/football-fire.png"
           alt="football"
-          width="250px"
-          className="absolute top-0 right-5 hidden md:block lg:right-[50px] lg:w-[300px]"
-        />
+          width="150px"
+          className="absolute top-15 hidden lg:block lg:right-[5px] lg:w-[200px]"
+        /> */}
         <div className="max-w-[90%] md:max-w-[500px] text-center md:text-left">
           <h1
             className={`text-3xl md:text-5xl lg:text-[4rem] tracking-tight leading-tight font-medium ${montserrat.className}`}
