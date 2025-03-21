@@ -76,14 +76,10 @@ const Players: React.FC<PlayersProps> = ({ players }) => {
               <h4 className="text-xl font-bold text-gray-800">{player.name}</h4>
               <p className="text-sm text-gray-600 mt-2">Email: {player.email}</p>
               <p className="text-sm text-gray-600">
-              <p className="text-sm text-gray-600">
                 Gender: {getGenderLabel(Number(player.gender))}
               </p>
-
-                  </p>
               {/* <p className="text-sm text-gray-600">EFootball ID: {player.eFootballId}</p> */}
               <p className="text-gray-500">In Game Name:{player.inGameName}</p>
-              
               {/* Status */}
               <p className={`mt-3 font-semibold ${
                 player.isApproved ? "text-green-600" : "text-yellow-500"
@@ -99,28 +95,5 @@ const Players: React.FC<PlayersProps> = ({ players }) => {
 </section>
  
   );
-};
-
-
-// Inline styles for simple styling
-const styles: { [key: string]: React.CSSProperties } = {
-    playerCard: {
-      display: "flex",
-      alignItems: "center",
-      gap: "15px",
-      border: "1px solid #ddd",
-      padding: "10px",
-      marginBottom: "10px",
-      borderRadius: "5px",
-      backgroundColor: "#f9f9f9",
-    },
-    image: {
-      width: "50px",
-      height: "50px",
-      borderRadius: "50%",
-      objectFit: "cover" as "cover", // Explicitly cast the value
-    },
-  };
-  
-
+};  
 export default Players;
