@@ -30,13 +30,18 @@ const HeroBanner = () => {
             Transforming your capacity into a whole different level.
           </p>
           <div className="py-3 flex flex-col md:flex-row gap-4">
-            <Link href="#about">
-              <PrimaryButton name="Explore" />
+            <Link href="#rules">
+              <PrimaryButton name="Rules" />
             </Link>
             <Link href="/playerRegistration">
-              <SecondaryButton name="Register for Tournament" />
+              <SecondaryButton name="Previous Records" />
             </Link>
           </div>
+          <div className="py-3 flex flex-col">
+            <Link href="/playerRegistration">
+              <button  className="border bg-[#4C6F35] text-[#fff] py-2 px-17 border-[#4C6F35] hover:bg-[#A77523] hover:text-white hover:border-[#A77523] ease-in duration-200" >Register For Tournament</button>
+            </Link>
+            </div>
         </div>
       </div>
 
