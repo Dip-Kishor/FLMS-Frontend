@@ -16,7 +16,6 @@ const Navbar: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   // const [token, setToken] = useState<null | string>(null);
   const [userData, setUserData] = useState<{
