@@ -13,8 +13,8 @@ const PreviousRecord = () => {
       {/* Left Side */}
       {/* Season 1 */}
       <div>
-      <div className="bg-[#F2ECDB] flex flex-col w-full pt-20 lg:p-6">
-       <h1 className='pt-8 lg:pt-30 text-1xl lg:text-3xl font-bold self-center bg-red-300 p-2 rounded-b-lg shadow-lg text-white'>Season Records</h1>
+      <div className="bg-[#F2ECDB] flex flex-col w-full pt-20 lg:p-6" id='season1'>
+       <h1 className='pt-8 lg:pt-25 text-1xl lg:text-3xl font-bold self-center bg-[#345120] p-2 rounded-b-lg shadow-lg text-white'>Season Records</h1>
        <div className="relative inline-block text-left">
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -50,7 +50,7 @@ const PreviousRecord = () => {
        {/* Season 1 Record*/ }
        <div>
         <h2 className='w-full bg-[#345120] text-center mt-5 rounded-lg text-white ' id='#season1'>Season 1</h2>
-        <div className='flex flex-col md:flex-row justify-between px-6'>
+        <div className='flex flex-col md:flex-row justify-between px-6 gap-5'>
         <table className="border border-[#BFAF92] border-collapse bg-[#FFFDF6] text-[#5A4A3D] shadow-md text-center ">
           <caption className="text-lg font-semibold text-[#5A4A3D] my-2">
             🏆 DB Pro League
@@ -175,7 +175,7 @@ const PreviousRecord = () => {
        
       </div>
       {/* Season 2 */}
-      <div className="bg-[#F2ECDB] flex flex-col w-full pt-20 lg:p-6">
+      <div className="bg-[#F2ECDB] flex flex-col w-full pt-20 lg:p-6" id='season2'>
        {/* Season 2 Record*/ }
        <div>
         <h2 className='w-full bg-[#345120] text-center mt-5 rounded-lg text-white'>Season 2</h2>
@@ -309,7 +309,7 @@ const PreviousRecord = () => {
       </div>
       {/* Right Side */}
       <div className="bg-[#FFFFFF] flex flex-col items-center  w-full lg:pt-20 lg:p-6">
-       <h1 className='pt-8 lg:pt-20 text-1xl lg:text-3xl font-bold self-center text-white bg-red-300 p-2 rounded-b-lg shadow-lg'>All time records</h1>
+       <h1 className='pt-8 lg:pt-10 text-1xl lg:text-3xl font-bold self-center text-white bg-[#345120] p-2 rounded-b-lg shadow-lg'>All time records</h1>
        <div>
          
         <div className='flex flex-col md:flex-row  justify-between px-6'>
@@ -318,7 +318,7 @@ const PreviousRecord = () => {
           <caption className="text-lg font-semibold text-[#5A4A3D] my-2">
           </caption>
           <thead>
-          <tr className="border border-[#BFAF92] hover:bg-[#E8D9B8] transition">
+          <tr className="border border-[#BFAF92]  hover:bg-[#E8D9B8] transition">
           <th className="border border-[#BFAF92] p-1 py-3  font-semibold w-[10%]">S.N</th>
           <th className="border border-[#BFAF92] p-1 py-3   font-semibold w-[20%]" >Title</th>
           <th className="border border-[#BFAF92] p-1 py-3   font-semibold w-[50%]" colSpan={2} >Players</th>
@@ -335,7 +335,7 @@ const PreviousRecord = () => {
               <td className=" p-3">Dip Regmi</td>
               <td className="border border-[#BFAF92] p-3 font-semibold">1</td>
             </tr>
-          <tr className="border border-[#BFAF92] bg-[#EAE7DC] hover:bg-[#D7D2C3] transition">
+          <tr className="border border-[#BFAF92]  hover:bg-[#D7D2C3] transition">
               <td className="p-1">
                 <img src="/Sujan.jpg" className="w-[50px] rounded-full shadow-sm" />
               </td>
@@ -343,7 +343,7 @@ const PreviousRecord = () => {
               <td className="border border-[#BFAF92] p-3 font-semibold">1</td>
 
             </tr>
-            <tr className="border border-[#BFAF92] hover:bg-[#D7D2C3] transition">
+            <tr className="border border-[#BFAF92] bg-[#EAE7DC] hover:bg-[#D7D2C3] transition">
               <td className="border border-[#BFAF92] p-3 font-semibold">2</td>
               <td className="border border-[#BFAF92] p-3 font-semibold">Most Matches</td>
               <td className=" p-1">
@@ -364,7 +364,7 @@ const PreviousRecord = () => {
               <td className="border border-[#BFAF92] p-3 font-semibold">16</td>
 
             </tr>
-            <tr className="border border-[#BFAF92] hover:bg-[#D7D2C3] transition">
+            <tr className="border border-[#BFAF92] bg-[#EAE7DC] hover:bg-[#D7D2C3] transition">
               <td className="border border-[#BFAF92] p-3 font-semibold">4</td>
               <td className="border border-[#BFAF92] p-3 font-semibold">Most Goals</td>
               <td className=" p-1">
