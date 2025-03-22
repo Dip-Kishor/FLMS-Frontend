@@ -1,12 +1,10 @@
 "use client"
 import React from 'react'
-import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowUp } from "lucide-react";
 
 
-const montserrat = Montserrat({ subsets: ["latin"] });
 const PreviousRecord = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
