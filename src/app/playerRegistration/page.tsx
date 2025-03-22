@@ -216,7 +216,6 @@ const Page = () => {
                   accept="image/*"
                   onChange={saveTeamFile}
                   className="mt-1 block [width:100%] p-2 rounded-md border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
-                  required
                 />
                 </div>
                 </div>
