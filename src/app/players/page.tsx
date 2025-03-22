@@ -96,7 +96,7 @@ const Page = () => {
               id="season-dropdown"
               value={selectedSeason}
               onChange={handleSeasonChange}
-              className="p-2 border rounded bg-amber-100"
+              className="border bg-[#4C6F35] text-white py-2 px-4 border-[#4C6F35] hover:bg-[#A77523] hover:border-[#A77523] ease-in duration-200"
             >
               <option value="">Select a Season</option>
               {seasons.map((season) => (

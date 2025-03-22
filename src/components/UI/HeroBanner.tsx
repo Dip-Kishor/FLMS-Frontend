@@ -33,7 +33,7 @@ const HeroBanner = () => {
             <Link href="#rules">
               <PrimaryButton name="Rules" />
             </Link>
-            <Link href="/playerRegistration">
+            <Link href="/previousRecords">
               <SecondaryButton name="Previous Records" />
             </Link>
           </div>
