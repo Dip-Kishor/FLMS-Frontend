@@ -16,6 +16,7 @@ const Navbar: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   // const [token, setToken] = useState<null | string>(null);
   const [userData, setUserData] = useState<{
@@ -211,6 +212,57 @@ const Navbar: React.FC = () => {
           <button onClick={toggleNavbar} aria-label="Close Menu" type="button">
             <FaTimes className="text-2xl text-[#414347]" />
           </button>
+          <div className="py-4 text-center">
+        {userData === null ? (
+            <Link  href="/Auth/login" onClick={() => setIsOpen(false)}>
+            <PrimaryButton name="Login" />
+            </Link>
+          ) :(
+            <div className="relative group inline-block text-center">
+              <img
+                src="/man.png"
+                className="cursor-pointer w-10 h-10 rounded-full m-auto"
+                alt="User Icon"
+              />
+              
+              <div className="">
+                {/* <div
+                    className="truncate max-w-[140px] text-center"
+                    title={userData?.role || "Guest"}
+                  >
+                    {userData?.role || "Guest"}
+                  </div> */}
+                <div className="flex gap-2">
+                  <div className="font-semibold"></div>
+                  <div
+                    className="truncate max-w-[140px]"
+                    title={userData?.userName || "Guest"}
+                  >
+                    {userData?.userName || "Guest"}
+                  </div>
+                </div>
+                {/* <div className="flex gap-2 mt-2">
+                  <div className="font-semibold">Email:</div>
+                  <div
+                    className="truncate max-w-[240px]"
+                    title={userData?.email || "N/A"}
+                  >
+                    {userData?.email || "N/A"}
+                  </div>
+                </div> */}
+                <button
+  className="bg-red-500 mt-3 w-full text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 disabled:opacity-50"
+  onClick={handleLogout}
+  disabled={isLoading} // Disable button while loading
+>
+  {isLoading ? "Logging Out..." : "Log Out"}
+</button>
+
+              </div>
+            </div>
+          )}
+          
+        </div>
         </div>
         <ul className="flex flex-col gap-7">
           {navLinks.map((navLink, index) => (
@@ -220,11 +272,7 @@ const Navbar: React.FC = () => {
             </li>
           ))}
         </ul>
-        <div className="py-4 text-center">
-          <Link  href="/Auth/login" onClick={() => setIsOpen(false)}>
-          <PrimaryButton name="Login" />
-          </Link>
-        </div>
+        
       </div>
     </div>
   );

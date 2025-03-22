@@ -88,8 +88,8 @@ const Page = () => {
     <>
       {loading ? <Loading /> : <></>}
       <div className="min-h-screen flex items-center justify-center bg-[#F2ECDB] bg-cover ">
-        <div className="w-[1188px] bg-[url('/image4.png')] bg-no-repeat  h-[60vh]">
-          <div className="w-[400px] mx-auto bg-white p-10 rounded-md">
+        <div className="w-[1188px] md:bg-[url('/image4.png')] bg-no-repeat  h-[60vh]">
+          <div className="w-[350px] md:w-[400px] mx-auto bg-white p-10 rounded-md">
             <div className="flex items-center justify-center">
             </div>
             <form onSubmit={handleSubmit} encType="multipart/form-data">
