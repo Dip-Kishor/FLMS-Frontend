@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {port} from "@/constants/appl.constant";
-import Logo from "@/components/UI/Logo";
 import LoginButton from "@/components/UI/LoginButton";
 import Link from "next/link";
 import { usePopup } from "@/components/UI/Popup";
@@ -88,45 +87,51 @@ const Page = () => {
     {loading ? <Loading /> : <></>}
     <div className="min-h-screen flex items-center justify-center bg-[#dbe9e2] bg-cover ">
       <div className="w-[1188px] bg-[url('/image4.png')] bg-no-repeat  h-[50vh]">
-        <div className="w-[400px] mx-auto bg-white p-10 rounded-md">
-          <div className="flex items-center justify-center">
-            <Logo />
+        <div className="w-[400px] md:w-[700px] mx-auto bg-white  rounded-md flex flex-col md:flex-row">
+          <div className=" w-1/2 h-[340px] bg-cover bg-[url('/Stadium2.jpg')] text-center text-white flex flex-col justify-end p-5">
+            {/* <Logo /> */}
+            <p className="text-3xl pb-2">FLMS</p>
+            <p className="text-1xl">Login to explore more and register for up coming tournament.</p>
           </div>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full p-2 rounded-md  border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
-                placeholder="user@example.com"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full p-2 rounded-md  border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
-                placeholder="••••••••"
-                required
-              />
-            </div>
+          <div className="md:w-1/2 px-6  pt-5">
+          <p className="">Welcome Back!</p>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-1 block w-full p-2 rounded-md  border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
+                  placeholder="user@example.com"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 block w-full p-2 rounded-md  border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
 
-            <div className="w-full">
-              <LoginButton name="Login" />
+              <div className="w-full">
+                <LoginButton name="Login" />
+              </div>
+            </form>
+            <div className="link text-center py-5">
+              <p>Not have an account yet?</p>
+              <Link href="/Auth/register" className="text-center underline text-[#4C6F35]">Register here!</Link>
             </div>
-          </form>
-          <div className="link text-center py-5">
-            <p>Not have an account yet?</p>
-            <Link href="/Auth/register" className="text-center underline text-[#4C6F35]">Register here!</Link>
           </div>
         </div>
       </div>
