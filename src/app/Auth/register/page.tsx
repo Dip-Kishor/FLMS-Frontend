@@ -52,8 +52,8 @@ const Page = () => {
     <>
       {loading ? <Loading /> : <></>}
       <div className="min-h-screen flex items-center justify-center bg-[#dbe9e2] bg-cover ">
-      <div className="w-[1188px] bg-[url('/image4.png')] bg-no-repeat  h-[50vh]">
-        <div className="w-[400px] md:w-[700px] mx-auto bg-white  rounded-md flex flex-col md:flex-row">
+      <div className="w-[1188px] bg-no-repeat  h-[50vh]">
+        <div className="w-[300px] md:w-[700px] mx-auto bg-white  rounded-md flex flex-col md:flex-row">
         
           <div className="md:w-1/2 px-6  pt-5">
           <form onSubmit={handleSubmit}>
@@ -106,7 +106,7 @@ const Page = () => {
               <Link href="/Auth/login" className="text-center underline text-[#4C6F35]">Login!</Link>
             </div>
          </div>
-         <div className=" w-1/2 h-[340px] bg-cover bg-[url('/Stadium2.jpg')] text-center text-white flex flex-col justify-end p-5">
+         <div className=" w-1/2 h-[340px] bg-cover bg-[url('/Stadium2.jpg')] text-center text-white hidden md:flex flex-col justify-end p-5">
             {/* <Logo /> */}
             <p className="text-3xl pb-2">FLMS</p>
             <p className="text-1xl">Register if you are new here.</p>
