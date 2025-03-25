@@ -13,8 +13,8 @@ const Page = () => {
   }
 
   const { showPopup } = usePopup();
-  const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [players, setPlayers] = useState([]);
   const [seasons, setSeasons] = useState<Season[]>([]);
   const [selectedSeason, setSelectedSeason] = useState<number | "">("");
 

@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
   const router = useRouter();
 
   const pathname = usePathname();
-  const isAdminPage = pathname === "/admin" || pathname === "/admin/user";
+  const isAdminPage = pathname === "/admin" || pathname === "/admin/users" || pathname === "/admin/fixtures"|| pathname === "/admin/players";
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
@@ -63,6 +63,11 @@ const Navbar: React.FC = () => {
     { name: "Players", href: "/players" },
   ];
 
+  const adminNavLinks=[
+    { name: "Dashboard", href: "/admin" },
+    { name: "Fixtures", href: "/admin/fixtures" },
+    { name: "Players", href: "/admin/players" },
+  ];
   const handleLogout = async () => {
     // e.preventDefault();
     try {
@@ -125,13 +130,21 @@ const Navbar: React.FC = () => {
         </div>
         <div className="max-lg:hidden">
         {isAdminPage ? (
-            userData?.role !== "Admin" ? (
-              <Link href="/admin/user">Users</Link>
+            userData?.role === "SuperAdmin" ? (
+              // <Link href="/admin/user">Users</Link>
+              <ul className="flex gap-7">
+                {adminNavLinks.map((adminNavLink, index) => (
+                  <li key={index}>
+                    <Link href={adminNavLink.href}>{adminNavLink.name}</Link>
+                  </li>
+                ))}
+                <Link href="/admin/users">Users</Link>
+              </ul>
             ) : (
               <ul className="flex gap-7">
-                {navLinks.map((navLink, index) => (
+                {adminNavLinks.map((adminNavLink, index) => (
                   <li key={index}>
-                    <Link href={navLink.href}>{navLink.name}</Link>
+                    <Link href={adminNavLink.href}>{adminNavLink.name}</Link>
                   </li>
                 ))}
               </ul>
@@ -142,6 +155,13 @@ const Navbar: React.FC = () => {
               <Link href={navLink.href}>{navLink.name}</Link>
             </li>
           ))}
+           {userData?.role==="SuperAdmin" || userData?.role==="Admin"? (
+             <Link href="/admin">Dashboard</Link>
+
+           ):(
+            <Link href=""></Link>
+           )
+          }
         </ul>}
         </div>
         <div className="max-lg:hidden">
