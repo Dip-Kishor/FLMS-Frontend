@@ -169,14 +169,14 @@ const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     }
   };
 
-  const handleInputChange = (id: number, field: keyof Fixtures, value: any) => {
+  const handleInputChange = <K extends keyof Fixtures>(id: number, field: K, value: Fixtures[K]) => {
     setFixtures((prevFixtures) =>
       prevFixtures.map((fixture) =>
         fixture.id === id ? { ...fixture, [field]: value } : fixture
       )
     );
   };
-
+  
   const updateFixture = async (fixture: Fixtures) => {
     try {
       const updateData = {
