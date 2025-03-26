@@ -62,7 +62,7 @@ const Fixtures: React.FC<FixturesProps> = ({ fixtures }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-20 lg:mx-20 lg:px-4 py-5">
     {Object.entries(groupedFixtures)
-      .sort(([dateA]: [string, any], [dateB]: [string, any]) => {
+      .sort(([dateA]: [string, Fixture[]], [dateB]: [string, Fixture[]]) => {
         // Ensure that dateA and dateB are strings, and convert them to Date objects
         return new Date(dateA).getTime() - new Date(dateB).getTime(); // Use getTime() for a numerical comparison
       })
