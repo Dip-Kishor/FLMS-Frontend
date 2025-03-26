@@ -236,7 +236,7 @@ const PreviousRecord = () => {
               </td>
               <td className="p-3">Sujan Dahal</td>
               <td className="border border-[#BFAF92] p-3 font-semibold">14</td>
-              <td className="border border-[#BFAF92] p-3 font-semibold">38</td>
+              <td className="border border-[#BFAF92] p-3 font-semibold">39</td>
 
             </tr>
            
@@ -248,7 +248,7 @@ const PreviousRecord = () => {
               </td>
               <td className="p-3">Bijay Subedi</td>
               <td className="border border-[#BFAF92] p-3 font-semibold">14</td>
-              <td className="border border-[#BFAF92] p-3 font-semibold">31</td>
+              <td className="border border-[#BFAF92] p-3 font-semibold">32</td>
 
             </tr>
           </tbody>

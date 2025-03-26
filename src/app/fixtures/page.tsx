@@ -36,7 +36,6 @@ const Page = () => {
                     if(currentSeason){
                         setSelectedSeason(currentSeason.id)
                         setFixtures([]);
-                        // fetchPlayers(currentSeason.id);
                         fetchFixtures(currentSeason.id)
                     }
                 }
@@ -60,17 +59,16 @@ const Page = () => {
           { withCredentials: true }
         );
         const data = response.data;
-        console.log(data);
         if (data.status === 4) {
           showPopup(data.message, "success");
           if (data.data) {
             setFixtures(data.data || []);
           } else {
-            setFixtures([]); // No fixtures available
+            setFixtures([]); 
           }
         } else {
           showPopup(data.message, "warning");
-          setFixtures([]); // Handle error or no fixtures case
+          setFixtures([]); 
         }
       } catch (error) {
         console.error("Error fetching fixtures:", error);

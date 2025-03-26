@@ -60,18 +60,20 @@ const Fixtures: React.FC<FixturesProps> = ({ fixtures }) => {
   }, {});
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16  mx-20 lg:mx-20 lg:px-4 py-5">
-      {Object.entries(groupedFixtures).map(([date, matches]) => (
-        <div
-          key={date}
-          className=""
-        >
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-20 lg:mx-20 lg:px-4 py-5">
+    {Object.entries(groupedFixtures)
+      .sort(([dateA]: [string, any], [dateB]: [string, any]) => {
+        // Ensure that dateA and dateB are strings, and convert them to Date objects
+        return new Date(dateA).getTime() - new Date(dateB).getTime(); // Use getTime() for a numerical comparison
+      })
+      .map(([date, matches]) => (
+        <div key={date}>
           <h2 className="text-black text-xl font-bold text-center mb-2">{date}</h2>
-          <hr></hr>
+          <hr />
           {matches
-            .sort((a, b) => a.matchTime.localeCompare(b.matchTime))
+            .sort((a, b) => a.matchTime.localeCompare(b.matchTime)) // Sort by match time
             .map((match) => (
-              <div key={match.id} >
+              <div key={match.id}>
                 <div className="text-center text-black font-bold mb-3">
                   {getGroup(match.group)}
                 </div>
@@ -101,12 +103,12 @@ const Fixtures: React.FC<FixturesProps> = ({ fixtures }) => {
                   </div>
                 </div>
                 <div className="text-center text-black mt-3">Time: {match.matchTime}</div>
-                <hr></hr>
+                <hr />
               </div>
             ))}
         </div>
       ))}
-    </div>
+  </div>
   );
 };
 

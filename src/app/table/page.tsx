@@ -33,7 +33,6 @@ const Page = () => {
                 if(currentSeason){
                     setSelectedSeason(currentSeason.id)
                     setTable([]);
-                    // fetchPlayers(currentSeason.id);
                     fetchTable(currentSeason.id)
                 }
             }
@@ -57,17 +56,16 @@ const fetchTable = async (seasonId: number) => {
         { withCredentials: true }
       );
       const data = response.data;
-      console.log(data);
       if (data.status === 4) {
         showPopup(data.message, "success");
         if (data.data) {
           setTable(data.data || []);
         } else {
-          setTable([]); // No fixtures available
+          setTable([]); 
         }
       } else {
         showPopup(data.message, "warning");
-        setTable([]); // Handle error or no fixtures case
+        setTable([]); 
       }
     } catch (error) {
       console.error("Error fetching fixtures:", error);
