@@ -35,6 +35,7 @@ const Page = () => {
                     const currentSeason = fetchedSeasons.find((season: Season) => season.isCurrentSeason);
                     if(currentSeason){
                         setSelectedSeason(currentSeason.id)
+                        setFixtures([]);
                         // fetchPlayers(currentSeason.id);
                         fetchFixtures(currentSeason.id)
                     }
@@ -52,18 +53,32 @@ const Page = () => {
        if (seasonId) fetchFixtures(seasonId);
     };
     const fetchFixtures = async (seasonId: number) => {
+      setLoading(true);
       try {
         const response = await axios.post(
           `${port}/fixturesAndResultsApi/GetFixtures?seasonId=${seasonId}`,
           { withCredentials: true }
         );
         const data = response.data;
-        // setFixturesStatus(data.status); 
-        setFixtures(data.data ||[]);
+        console.log(data);
+        if (data.status === 4) {
+          showPopup(data.message, "success");
+          if (data.data) {
+            setFixtures(data.data || []);
+          } else {
+            setFixtures([]); // No fixtures available
+          }
+        } else {
+          showPopup(data.message, "warning");
+          setFixtures([]); // Handle error or no fixtures case
+        }
       } catch (error) {
         console.error("Error fetching fixtures:", error);
+      } finally {
+        setLoading(false);
       }
     };
+    
   return (
     <>
       {loading ? (
@@ -92,7 +107,7 @@ const Page = () => {
           {fixtures.length > 0 ? (
             <Fixtures fixtures={fixtures} />
           ) : (
-            <p className="text-white">No players found.</p>
+            <p className="text-white">No fixtures found.</p>
           )}
         </div>
       )}
