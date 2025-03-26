@@ -17,8 +17,8 @@ const Page = () => {
   const { showPopup } = usePopup();
   const [fixtures,setFixtures]=useState([]);
   const [seasons,setSeasons] = useState<Season[]>([]);
-    const [selectedSeason, setSelectedSeason] = useState<number | "">("");
-      const [loading, setLoading] = useState(false);
+  const [selectedSeason, setSelectedSeason] = useState<number | "">("");
+  const [loading, setLoading] = useState(false);
     
   
       useEffect(() => {
@@ -86,7 +86,7 @@ const Page = () => {
           <div className="loader"></div>
         </div>
       ) : (
-        <div className="pt-20 min-h-screen bg-[url('/grunge_bg.jpg')] bg-cover bg-center">
+        <div className="pt-20 min-h-screen  bg-cover bg-center">
           <div className="mb-4 mt-4 mr-2 text-right">
             <label htmlFor="season-dropdown" className=" mr-2 ">Select Season:</label>
             <select

@@ -1,4 +1,6 @@
 import React from 'react';
+import { BASE_URL } from "@/constants/appl.constant";
+
 
 enum Group {
     GroupA = 1,
@@ -26,17 +28,21 @@ interface Fixture {
   seasonName: string;
   matchDate: string;
   matchTime: string;
+  imageUrl1 : string;
   userId1: number;
   userName1: string;
   user1Score: number;
   user2Score: number;
   userId2: number;
   userName2: string;
+  imageUrl2: string;
   tiebrekerScoreUser1: number;
   tiebrekerScoreUser2: number;
   group: number;
   isPostponed: boolean;
   isCompleted: boolean;
+  isPlayOff :boolean;
+
 }
 
 interface FixturesProps {
@@ -54,32 +60,50 @@ const Fixtures: React.FC<FixturesProps> = ({ fixtures }) => {
   }, {});
 
   return (
-    <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto lg:mx-20 px-4 py-5">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16  mx-20 lg:mx-20 lg:px-4 py-5">
       {Object.entries(groupedFixtures).map(([date, matches]) => (
-        <div key={date} className="relative bg-[#F2ECDB] shadow-lg rounded-2xl p-10 m-5 transition-transform transform hover:scale-105">
-          <h2 className="text-black text-xl font-bold mb-2">{date}</h2>
+        <div
+          key={date}
+          className=""
+        >
+          <h2 className="text-black text-xl font-bold text-center mb-2">{date}</h2>
+          <hr></hr>
           {matches
-          .sort((a, b) => a.matchTime.localeCompare(b.matchTime)).map((match) => (
-            <div key={match.id} className="bg-[#4c6f35] p-3 rounded-md mb-2">
-                <table className='text-white text center mx-5'>
-                    <tbody>
-                        <tr className='text-center'>
-                            <td colSpan={5}>{getGroup(match.group)}</td>
-                        </tr>
-                        <tr className='text-center'>
-                            <td className='p-3 w-[30%]'>{match.userName1}</td>
-                            <td className='p-3 w-[15%]'>{match.user1Score}</td>
-                            <td className='p-3 w-[10%]'>-</td>
-                            <td className='p-3 w-[15%]'>{match.user2Score}</td>
-                            <td className='p-3 w-[30%]'>{match.userName2}</td>
-                        </tr>
-                        <tr className='text-center'>
-                            <td colSpan={5}>Time: {match.matchTime}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-          ))}
+            .sort((a, b) => a.matchTime.localeCompare(b.matchTime))
+            .map((match) => (
+              <div key={match.id} >
+                <div className="text-center text-black font-bold mb-3">
+                  {getGroup(match.group)}
+                </div>
+                <div className="flex items-center justify-between text-black">
+                  <div className="flex items-center justify-end w-1/4">
+                    <span className="p-1">{match.userName1}</span>
+                    <img
+                      src={match.imageUrl1 ? `${BASE_URL}${match.imageUrl1}` : "/default-avatar.png"}
+                      alt=""
+                      className="p-1 w-14 h-14 object-cover rounded-full"
+                    />
+                  </div>
+                  <div className="text-lg font-semibold w-1/6 text-center">
+                    {match.user1Score}
+                  </div>
+                  <div className="text-lg font-semibold w-1/12 text-center">-</div>
+                  <div className="text-lg font-semibold w-1/6 text-center">
+                    {match.user2Score}
+                  </div>
+                  <div className="flex items-center w-1/4">
+                    <img
+                      src={match.imageUrl2 ? `${BASE_URL}${match.imageUrl2}` : "/default-avatar.png"}
+                      alt=""
+                      className="p-1 w-14 h-14 object-cover rounded-full"
+                    />
+                    <span className="p-1">{match.userName2}</span>
+                  </div>
+                </div>
+                <div className="text-center text-black mt-3">Time: {match.matchTime}</div>
+                <hr></hr>
+              </div>
+            ))}
         </div>
       ))}
     </div>
