@@ -87,7 +87,7 @@ const Aboutus = () => {
                     <h1 className="py-1  font-bold text-green-800 text-3xl">Rule No.5</h1>
                     <h3 className="py-1  font-bold text-red-800">Punctuality</h3>
                     <p className="text-justify py-3 px-3">
-                        The tournament schedule is fixed. Players must be available at the specified time; otherwise, their opponent will be declared the winner of that match.
+                        The tournament schedule is fixed. Players must be available at the specified time; otherwise, their opponent will win.
                     </p>
                 </div>
             </div>
