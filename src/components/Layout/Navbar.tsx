@@ -138,6 +138,7 @@ const Navbar: React.FC = () => {
                   </li>
                 ))}
                 <Link href="/admin/users">Users</Link>
+                <Link className="border text-center  text-[#4C6F35] px-2  hover:bg-[#4C6F35] hover:text-white hover:border-[#4C6F35] ease-in duration-200" href="/">Home</Link>
               </ul>
             ) : (
               <ul className="flex gap-7">
@@ -146,6 +147,7 @@ const Navbar: React.FC = () => {
                     <Link href={adminNavLink.href}>{adminNavLink.name}</Link>
                   </li>
                 ))}
+                <Link className="border text-center  text-[#4C6F35] px-2 border-[#A77523] hover:bg-[#4C6F35] hover:text-white hover:border-[#4C6F35] ease-in duration-200" href="/">Home</Link>
               </ul>
             )
           ) : <ul className="flex gap-7">
@@ -155,7 +157,7 @@ const Navbar: React.FC = () => {
             </li>
           ))}
            {userData?.role==="SuperAdmin" || userData?.role==="Admin"? (
-             <Link href="/admin">Dashboard</Link>
+             <Link className="border text-center  text-[#4C6F35] px-2 border-[#A77523] hover:bg-[#4C6F35] hover:text-white hover:border-[#4C6F35] ease-in duration-200" href="/admin">Dashboard</Link>
 
            ):(
             <Link href=""></Link>
@@ -283,12 +285,44 @@ const Navbar: React.FC = () => {
         </div>
         </div>
         <ul className="flex flex-col gap-7">
+          {isAdminPage?(
+            userData?.role==="SuperAdmin"?(
+              <ul className="flex flex-col gap-7">
+                {adminNavLinks.map((adminNavLink, index) => (
+                  <li key={index} className="text-center">
+                    <Link href={adminNavLink.href}
+              onClick={() => setIsOpen(false)}>{adminNavLink.name} </Link>
+                  </li>
+                ))}
+                <Link className="text-center" href="/admin/users">Users</Link>
+                <Link className="border text-center  text-[#4C6F35] py-2 mx-20 border-[#A77523] hover:bg-[#4C6F35] hover:text-white hover:border-[#4C6F35] ease-in duration-200" href="/" onClick={() => setIsOpen(false)}>Home</Link>
+              </ul>
+            ):(
+              <ul className="flex flex-col gap-7">
+              {adminNavLinks.map((adminNavLink, index) => (
+                <li key={index} className="text-center">
+                  <Link href={adminNavLink.href}
+              onClick={() => setIsOpen(false)}>{adminNavLink.name} </Link>
+              <Link className="border text-center  text-[#4C6F35] py-2 mx-20 border-[#A77523] hover:bg-[#4C6F35] hover:text-white hover:border-[#4C6F35] ease-in duration-200" href="/" onClick={() => setIsOpen(false)}>Home</Link>
+                </li>
+              ))}
+            </ul>
+            )):(
+          <ul className="flex flex-col gap-7">
           {navLinks.map((navLink, index) => (
             <li key={index} className="text-center">
               <Link href={navLink.href}
               onClick={() => setIsOpen(false)}>{navLink.name} </Link>
             </li>
           ))}
+          {userData?.role==="SuperAdmin" || userData?.role==="Admin"? (
+             <Link href="/admin" className="border text-center  text-[#4C6F35] py-2 mx-20 border-[#A77523] hover:bg-[#4C6F35] hover:text-white hover:border-[#4C6F35] ease-in duration-200" onClick={() => setIsOpen(false)}>Dashboard</Link>
+           ):(
+            <Link href=""></Link>
+           )
+          }
+          </ul>
+          )}
         </ul>
         
       </div>

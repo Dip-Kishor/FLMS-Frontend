@@ -109,7 +109,6 @@ const handleSelectAll = () => {
     
           if (data.status === 4) {
             setPlayers(data.data.playersList || []);
-            console.log(data.data.playersList)
             showPopup(data.message, "success");
           } else {
             showPopup(data.message, "warning");

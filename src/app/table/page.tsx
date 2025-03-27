@@ -3,7 +3,6 @@ import TableData from '@/components/UI/TableData'
 import { port } from '@/constants/appl.constant';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-  import { usePopup } from "@/components/UI/Popup";
 const Page = () => {
   interface Season {
     id: number;
@@ -12,7 +11,6 @@ const Page = () => {
   }
   
   
-  const { showPopup } = usePopup();
   const [table,setTable]=useState([]);
   const [seasons,setSeasons] = useState<Season[]>([]);
   const [selectedSeason, setSelectedSeason] = useState<number | "">("");
@@ -57,14 +55,12 @@ const fetchTable = async (seasonId: number) => {
       );
       const data = response.data;
       if (data.status === 4) {
-        showPopup(data.message, "success");
         if (data.data) {
           setTable(data.data || []);
         } else {
           setTable([]); 
         }
       } else {
-        showPopup(data.message, "warning");
         setTable([]); 
       }
     } catch (error) {

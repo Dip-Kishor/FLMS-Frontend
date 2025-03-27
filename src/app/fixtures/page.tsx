@@ -2,7 +2,6 @@
 import { port } from '@/constants/appl.constant';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-  import { usePopup } from "@/components/UI/Popup";
 import Fixtures from '@/components/UI/Fixtures';
 
 
@@ -14,7 +13,6 @@ const Page = () => {
   }
   
   
-  const { showPopup } = usePopup();
   const [fixtures,setFixtures]=useState([]);
   const [seasons,setSeasons] = useState<Season[]>([]);
   const [selectedSeason, setSelectedSeason] = useState<number | "">("");
@@ -60,14 +58,12 @@ const Page = () => {
         );
         const data = response.data;
         if (data.status === 4) {
-          showPopup(data.message, "success");
           if (data.data) {
             setFixtures(data.data || []);
           } else {
             setFixtures([]); 
           }
         } else {
-          showPopup(data.message, "warning");
           setFixtures([]); 
         }
       } catch (error) {

@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { usePopup } from "@/components/UI/Popup";
 import { port } from "@/constants/appl.constant";
 import Players from "@/components/UI/Players";
 
@@ -12,7 +11,6 @@ const Page = () => {
     isCurrentSeason: boolean;
   }
 
-  const { showPopup } = usePopup();
   const [loading, setLoading] = useState(false);
   const [players, setPlayers] = useState([]);
   const [seasons, setSeasons] = useState<Season[]>([]);
@@ -39,10 +37,9 @@ const Page = () => {
             fetchPlayers(currentSeason.id);
           }
         } else {
-          showPopup(data.message, "warning");
+        console.error("Error:");
         }
       } catch (error) {
-        showPopup("An error occurred while fetching seasons.", "warning");
         console.error("Error:", error);
       }
     };
@@ -63,12 +60,10 @@ const Page = () => {
 
       if (data.status === 4) {
         setPlayers(data.data.playersList || []);
-        showPopup(data.message, "success");
       } else {
-        showPopup(data.message, "warning");
+      console.error("Error:");
       }
     } catch (error) {
-      showPopup("An error occurred while fetching players.", "warning");
       console.error("Error:", error);
     } finally {
       setLoading(false);
