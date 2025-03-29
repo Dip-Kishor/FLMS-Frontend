@@ -3,18 +3,24 @@ import TableData from '@/components/UI/TableData'
 import { port } from '@/constants/appl.constant';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import PlayoffData from '@/components/UI/PlayoffData';
+
 const Page = () => {
   interface Season {
     id: number;
     seasonName: string;
     isCurrentSeason: boolean;
   }
+
   
   
   const [table,setTable]=useState([]);
+  const [playoffFixtures,setPlayoffFixtures]=useState([]);
   const [seasons,setSeasons] = useState<Season[]>([]);
   const [selectedSeason, setSelectedSeason] = useState<number | "">("");
   const [loading, setLoading] = useState(false);
+  const [isPlayoffModalOpen, setIsPlayoffModalOpen] = useState(false);
+  
 
   useEffect(() => {
     const fetchSeasons = async () => {
@@ -32,6 +38,8 @@ const Page = () => {
                     setSelectedSeason(currentSeason.id)
                     setTable([]);
                     fetchTable(currentSeason.id)
+                    fetchPlayoffData(currentSeason.id)
+
                 }
             }
       } catch (error) {
@@ -44,7 +52,10 @@ const Page = () => {
 const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
   const seasonId = Number(event.target.value);
   setSelectedSeason(seasonId);
-   if (seasonId) fetchTable(seasonId);
+   if (seasonId) {
+    fetchTable(seasonId);
+    fetchPlayoffData(seasonId)
+   }
 };
 const fetchTable = async (seasonId: number) => {
     setLoading(true);
@@ -69,6 +80,25 @@ const fetchTable = async (seasonId: number) => {
       setLoading(false);
     }
   };
+  const fetchPlayoffData = async(seasonId:number) =>{
+    try{
+      const response = await axios.post(`${port}/fixturesAndResultsApi/getPlayoffData?seasonId=${seasonId}`,
+        {withCredentials:true}
+      );
+      const data = response.data;
+      if (data.status === 4) {
+        if (data.data) {
+          setPlayoffFixtures(data.data || []);
+        } else {
+          setPlayoffFixtures([]); 
+        }
+      } else {
+        setPlayoffFixtures([]); 
+      }
+    }catch(error){
+      console.error("Error fetching playoff data",error)
+    }
+  }
   return (
     <>
       {loading ? (
@@ -93,13 +123,37 @@ const fetchTable = async (seasonId: number) => {
               ))}
             </select>
           </div>
-
+          {playoffFixtures.length > 0 && (
+            <div className="text-center mt-4">
+              <button 
+                onClick={() => setIsPlayoffModalOpen(true)}
+                className="bg-[#4C6F35] text-white py-2 px-4 rounded-md hover:bg-[#A77523] ease-in duration-200"
+              >
+                View  Playoff
+              </button>
+            </div>
+          )}
           {table.length > 0 ? (
             <TableData table={table} />
           ) : (
             <p className="text-white">No fixtures found.</p>
           )}
         </div>
+      )}
+      {isPlayoffModalOpen && (
+        <>
+        <div className="fixed inset-0 bg-opacity-50 fade flex items-center justify-center mt-25 lg:m-1" onClick={() => setIsPlayoffModalOpen(false)}>
+          <div className=" relative">
+            <button 
+              onClick={() => setIsPlayoffModalOpen(false)}
+              className="absolute top-2 right-2 text-3xl text-white hover:text-gray-900"
+            >
+              &times;
+            </button>
+            <PlayoffData playoffData={playoffFixtures} />
+          </div>
+        </div>
+        </>
       )}
     </>
   )

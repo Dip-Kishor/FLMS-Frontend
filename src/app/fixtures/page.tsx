@@ -127,9 +127,9 @@ const Page = () => {
             <div className="text-center mt-4">
               <button 
                 onClick={() => setIsPlayoffModalOpen(true)}
-                className="bg-[#A77523] text-white py-2 px-4 rounded-md hover:bg-[#4C6F35] ease-in duration-200"
+                className="bg-[#4C6F35] text-white py-2 px-4 rounded-md hover:bg-[#A77523] ease-in duration-200"
               >
-                View Playoff Data
+                View Playoff
               </button>
             </div>
           )}
@@ -143,7 +143,7 @@ const Page = () => {
       )}
       {isPlayoffModalOpen && (
         <>
-        <div className="fixed inset-0 bg-opacity-50 fade flex items-center justify-center m-4 lg:m-1">
+        <div className="fixed  inset-0 bg-opacity-50 fade flex items-center justify-center mt-25 lg:m-1" onClick={() => setIsPlayoffModalOpen(false)} >
           <div className=" relative">
             <button 
               onClick={() => setIsPlayoffModalOpen(false)}
