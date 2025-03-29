@@ -59,7 +59,12 @@ const Fixtures: React.FC<FixturesProps> = ({ fixtures }) => {
     return acc;
   }, {});
 
-  return (
+  return (<>
+  <h2
+          className={`text-3xl mt-5 md:text-4xl tracking-tight leading-tight text-center font-medium`}
+        >
+          Group Stage Fixtures
+        </h2>
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-20 lg:mx-20 lg:px-4 py-5">
     {Object.entries(groupedFixtures)
       .sort(([dateA]: [string, Fixture[]], [dateB]: [string, Fixture[]]) => {
@@ -109,6 +114,7 @@ const Fixtures: React.FC<FixturesProps> = ({ fixtures }) => {
         </div>
       ))}
   </div>
+  </>
   );
 };
 

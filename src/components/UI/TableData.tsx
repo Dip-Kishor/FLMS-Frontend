@@ -31,7 +31,12 @@ const TableData: React.FC<TableProps> = ({ table }) => {
     return acc;
   }, {});
 
-  return (
+  return (<>
+  <h2
+          className={`text-3xl mt-5 md:text-4xl tracking-tight leading-tight text-center font-medium`}
+        >
+          Table
+        </h2>
     <div className="p-4">
       {Object.keys(groupedData)
         .sort((a, b) => Number(a) - Number(b)) // Sort groups in ascending order
@@ -80,6 +85,7 @@ const TableData: React.FC<TableProps> = ({ table }) => {
           </div>
         ))}
     </div>
+    </>
   );
 };
 
