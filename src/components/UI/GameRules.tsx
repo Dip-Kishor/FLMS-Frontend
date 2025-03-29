@@ -18,7 +18,7 @@ const Aboutus = () => {
         </h2>
         <div className="flex gap-12 py-10 flex-wrap justify-around">
         <div className="relative w-[300px] ">
-            <div className="bg-gray-200 shadow-lg w-full h-[25vh] rounded-2xl py-5 px-5 relative overflow-visible">
+            <div className="bg-gray-200 shadow-lg w-full h-[30vh] rounded-2xl py-5 px-5 relative overflow-visible">
                 <img 
                 src="/Discord.png" 
                 className="absolute w-[20%] -top-5 -left-5"
@@ -33,7 +33,7 @@ const Aboutus = () => {
             </div>
         </div>
         <div className="relative w-[300px]">
-            <div className="bg-gray-200 shadow-lg w-full h-[25vh] rounded-2xl py-5 px-5 relative overflow-visible">
+            <div className="bg-gray-200 shadow-lg w-full h-[30vh] rounded-2xl py-5 px-5 relative overflow-visible">
                 <img 
                 src="/Camera.png" 
                 className="absolute w-[20%] -top-5 -left-5"
@@ -48,7 +48,7 @@ const Aboutus = () => {
             </div>
         </div>
         <div className="relative w-[300px]">
-            <div className="bg-gray-200 shadow-lg w-full h-[25vh] rounded-2xl py-5 px-5 relative overflow-visible">
+            <div className="bg-gray-200 shadow-lg w-full h-[30vh] rounded-2xl py-5 px-5 relative overflow-visible">
                 <img 
                 src="/ScreenSharing.png" 
                 className="absolute w-[20%] -top-5 -left-5"
@@ -63,7 +63,7 @@ const Aboutus = () => {
             </div>
         </div>
         <div className="relative w-[300px]">
-            <div className="bg-gray-200 shadow-lg w-full h-[25vh] rounded-2xl py-5 px-5 relative overflow-visible">
+            <div className="bg-gray-200 shadow-lg w-full h-[30vh] rounded-2xl py-5 px-5 relative overflow-visible">
                 <img 
                 src="/ConnectionFailure.png" 
                 className="absolute w-[20%] -top-5 -left-5"
@@ -78,7 +78,7 @@ const Aboutus = () => {
             </div>
         </div>
         <div className="relative w-[300px]">
-            <div className="bg-gray-200 shadow-lg w-full h-[25vh] rounded-2xl py-5 px-5 relative overflow-visible">
+            <div className="bg-gray-200 shadow-lg w-full h-[30vh] rounded-2xl py-5 px-5 relative overflow-visible">
                 <img 
                 src="/Punctuality.png" 
                 className="absolute w-[20%] -top-5 -left-5"
@@ -93,7 +93,7 @@ const Aboutus = () => {
             </div>
         </div>
         <div className="relative w-[300px]">
-            <div className="bg-gray-200 shadow-lg w-full h-[25vh] rounded-2xl py-5 px-5 relative overflow-visible">
+            <div className="bg-gray-200 shadow-lg w-full h-[30vh] rounded-2xl py-5 px-5 relative overflow-visible">
                 <img 
                 src="/Unavailability.png" 
                 className="absolute w-[20%] -top-5 -left-5"
@@ -108,7 +108,7 @@ const Aboutus = () => {
             </div>
         </div>
         <div className="relative w-[300px]">
-            <div className="bg-gray-200 shadow-lg w-full h-[25vh] rounded-2xl py-5 px-5 relative overflow-visible">
+            <div className="bg-gray-200 shadow-lg w-full h-[30vh] rounded-2xl py-5 px-5 relative overflow-visible">
                 <img 
                 src="/Payment.png" 
                 className="absolute w-[20%] -top-5 -left-5"
@@ -123,7 +123,7 @@ const Aboutus = () => {
             </div>
         </div>
         <div className="relative w-[300px]">
-            <div className="bg-gray-200 shadow-lg w-full h-[25vh] rounded-2xl py-5 px-5 relative overflow-visible">
+            <div className="bg-gray-200 shadow-lg w-full h-[30vh] rounded-2xl py-5 px-5 relative overflow-visible">
                 <img 
                 src="/MatchDuration.png" 
                 className="absolute w-[20%] -top-5 -left-5"
