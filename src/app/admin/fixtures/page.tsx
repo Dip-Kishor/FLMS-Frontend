@@ -3,6 +3,8 @@ import React,{ useState, useEffect } from "react";
 import axios from "axios";
 import { port } from "@/constants/appl.constant";
 import { usePopup } from "@/components/UI/Popup";
+import { FaArrowUp } from "react-icons/fa6"; 
+
 
 
 const Page = () => {
@@ -226,9 +228,14 @@ const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         ))}
       </select>
       </div>
+      <h2
+          className={`text-3xl mt-5 md:text-4xl tracking-tight leading-tight text-center font-medium`}
+        >
+          Group Stage Fixtures
+        </h2>
       
       {fixturesStatus === 4 ?(
-      <div className='text-center py-5 px-10 overflow-x-auto'>
+      <div className='text-center lg:flex justify-center py-5 px-10 overflow-x-auto'>
           <table className="border border-[#BFAF92] border-collapse bg-[#FFFDF6] text-[#5A4A3D] shadow-md text-center ">
             <thead>
               <tr className="border border-[#BFAF92] hover:bg-[#E8D9B8] transition">
@@ -296,13 +303,8 @@ const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
                       onChange={(e) => handleInputChange(fixture.id, "isCompleted", e.target.checked)}
                     />
                   </td>
-                  <td>
-  <input
-    type="button"
-    className="cursor-pointer"
-    value="Update"
-    onClick={() => updateFixture(fixture)}
-  />
+                  <td className="text-center p-2" onClick={() => updateFixture(fixture)}>
+                    <FaArrowUp className="text-blue-500 inline-block cursor-pointer"/> Update
 </td>
 
                 </tr>

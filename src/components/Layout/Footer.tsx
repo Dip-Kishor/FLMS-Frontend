@@ -49,7 +49,7 @@ const Footer = () => {
 
       {/* Copyright Section */}
       <div className="bg-[#A77523] py-5 text-white text-center text-sm">
-        &copy; 2024 e-Football Homies Tournament. All rights reserved.
+        &copy; 2024 DB Pro League. All rights reserved.
       </div>
     </>
   );

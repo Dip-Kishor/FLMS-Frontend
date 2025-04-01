@@ -6,7 +6,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 const Aboutus = () => {
   return (
     <section
-      className="pt-20 min-h-screen bg-[url('/grunge_bg.jpg')] bg-cover bg-center px-5"
+      className="pt-30 min-h-screen bg-[url('/grunge_bg.jpg')] bg-cover bg-center px-5"
       id="about"
     >
       <div className="container mx-auto">
