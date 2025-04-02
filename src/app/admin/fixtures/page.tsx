@@ -10,14 +10,38 @@ import { FaArrowUp } from "react-icons/fa6";
 const Page = () => {
     const { showPopup } = usePopup();
     const [loading, setLoading] = useState(false);
-    const [seasons, setSeasons]=useState<Season[]>([]);
+    const [seasons, setSeasons]= useState<Season[]>([]);
     const [players,setPlayers] =useState<{id:number,name:string}[]>([]);
     const [selectedSeason, setSelectedSeason]=useState<number | "">("");
     const [noOfMatches,setNoOfMatches] = useState("");
     const [noOfGroups,setNoOfGroups] = useState("");
     const [selectedPlayers,setSelectedPlayers] = useState<number[]>([]);
     const [fixturesStatus, setFixturesStatus] = useState<number | null>(null);
-    const [fixtures,setFixtures] =useState<Fixtures[]>([])
+    const [fixtures,setFixtures] = useState<Fixtures[]>([])
+    const [playoffData, setPlayoffData] = useState<Fixtures>({
+      id: 0, // Temporary ID
+      seasonId: 0, // Example seasonId
+      seasonName: "Season 1", // Example
+      matchDate: "",
+      matchTime: "",
+      userId1: 0,
+      userName1: "Name",
+      user1Score: 0,
+      user2Score: 0,
+      userId2: 0,
+      userName2: "Name",
+      tiebrekerScoreUser1: 0,
+      tiebrekerScoreUser2: 0,
+      group: 1,
+      isPostponed: false,
+      isCompleted: false,
+      playOffType: 1,
+      isPlayoff: true,
+      imageUrl1: "string",
+      imageUrl2: "string",
+    });
+    const [isPlayoffModalOpen, setIsPlayoffModalOpen] = useState(false);
+    
     const allSelected = players.length > 0 && selectedPlayers.length === players.length;
 
 // Handle "Select All" toggle
@@ -53,6 +77,32 @@ const handleSelectAll = () => {
             return "Unknown";
         }
       };
+      enum PlayOffType {
+        QuarterFinal = 1,
+        SemiFinal = 2,
+        Final = 3,
+        Qualifier=4,
+        Eliminator1=5, 
+        Eliminator2=6,
+      }
+      const getplayoff = (playoff: number): string => {
+        switch (playoff) {
+          case PlayOffType.QuarterFinal:
+            return "QuarterFinal";
+          case PlayOffType.SemiFinal:
+            return "SemiFinal";
+          case PlayOffType.Final:
+            return "Final";
+          case PlayOffType.Qualifier:
+            return "Qualifier";
+          case PlayOffType.Eliminator1:
+            return "Eliminator1";
+          case PlayOffType.Eliminator2:
+            return "Eliminator2";
+          default:
+            return "Unknown";
+        }
+      };
       
       interface Fixtures{
         id:number,
@@ -70,7 +120,11 @@ const handleSelectAll = () => {
         tiebrekerScoreUser2:number,
         group:number,
         isPostponed: boolean,
-        isCompleted: boolean
+        isCompleted: boolean,
+        playOffType : number,
+        isPlayoff: boolean,
+        imageUrl1: string,
+        imageUrl2: string,
       }
       
     useEffect(() => {
@@ -87,6 +141,11 @@ const handleSelectAll = () => {
                     const currentSeason = fetchedSeasons.find((season: Season) => season.isCurrentSeason);
                     if(currentSeason){
                         setSelectedSeason(currentSeason.id)
+                        setPlayoffData((prevData) => ({
+                          ...prevData,
+                          seasonId: currentSeason.id, // Corrected assignment
+                        }));
+              
                         fetchPlayers(currentSeason.id);
                         fetchFixtures(currentSeason.id)
                     }
@@ -127,6 +186,10 @@ const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSeason(seasonId);
     if (seasonId) fetchPlayers(seasonId);
     if(seasonId) fetchFixtures(seasonId);
+    setPlayoffData((prevData) => ({
+      ...prevData,
+      seasonId: seasonId, // Corrected assignment
+    }));
   };
 
 
@@ -144,7 +207,7 @@ const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     }
   };
   const handleSubmit = async () => {
-    // e.preventDefault();
+    //  e.preventDefault();
     if (!selectedSeason || !noOfMatches || !noOfGroups || selectedPlayers.length === 0) {
       alert("Please fill in all fields!");
       return;
@@ -206,11 +269,47 @@ const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       console.error(`Error updating fixture ${fixture.id}:`, error);
     }
   };
+  const handlePlayoffInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setPlayoffData((prevData) => ({
+      ...prevData,
+      [name]: name.includes("Score") || name === "group" ? Number(value) : value, // Convert numbers
+    }));
+  };
+  const handlePlayoffSubmit = async(playoffFixture: Fixtures) =>{
+    if (!playoffFixture.userId1 || !playoffFixture.userId2 ) {
+      alert("Please fill all required fields");
+      return;
+    }
+    const formattedFixture = {
+      ...playoffFixture,
+      userId1: Number(playoffFixture.userId1), // Convert to number
+      userId2: Number(playoffFixture.userId2), // Convert to number
+      playOffType: Number(playoffFixture.playOffType), // Ensure numeric type
+    };
+    console.log(formattedFixture)
+    const response=await axios.post(`${port}/fixturesAndResultsApi/createPlayoffFixtures`, formattedFixture, { withCredentials: true });
+      const data= response.data;
+      if(data.status===4){
+      showPopup(data.message, "success");
+      }
+  console.log(playoffFixture);
+    // setPlayoffData([...playoffData, playoffData]);
+    setIsPlayoffModalOpen(false);
+  }
   return (
     <>{loading?(<div className="fixed inset-0 flex items-center justify-center bg-white">
         <div className="loader"></div>
       </div>):(
     <div className="pt-20 min-h-screen bg-[url('/grunge_bg.jpg')] bg-cover bg-center ">
+      <div className="text-center mt-4">
+              <button 
+                onClick={() => setIsPlayoffModalOpen(true)}
+                className="bg-[#4C6F35] text-white py-2 px-4 rounded-md hover:bg-[#A77523] ease-in duration-200"
+              >
+                View Playoff
+              </button>
+            </div>
     <form onSubmit={handleSubmit}>
     <div className="mb-4 mt-4 mr-2 text-right ">
       <label htmlFor="season-dropdown" className=" mr-2 ">Select Season:</label>
@@ -228,6 +327,7 @@ const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         ))}
       </select>
       </div>
+      
       <h2
           className={`text-3xl mt-5 md:text-4xl tracking-tight leading-tight text-center font-medium`}
         >
@@ -380,6 +480,132 @@ const handleSeasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
   </div>
 )}
+{isPlayoffModalOpen && (
+        <>
+        <div
+          className="fixed inset-0  flex items-center justify-center mt-25 lg:m-1"
+        >
+          <div className="relative">
+            <button
+              onClick={() => setIsPlayoffModalOpen(false)}
+              className="absolute top-2 right-2 text-3xl text-white hover:text-gray-900"
+            >
+              &times;
+            </button>
+            <div className="bg-[url('/GradientBG.jpg')] p-10 lg:p-6 rounded-lg shadow-lg w-full md:w-[600px] lg:w-[800px] lg:h-220">
+              <label className="block text-white">Select Player 1:</label>
+              <select
+                className="w-full p-2 rounded"
+                name="userId1"
+                value={playoffData.userId1}
+                onChange={(e) =>handlePlayoffInputChange(e)}
+              >
+                <option value="">Select a Player</option>
+                {players.map((player) => (
+                  <option key={player.id} value={player.id}>
+                    {player.name}
+                  </option>
+                ))}
+              </select>
+  
+              <label className="block text-white mt-4">Select Player 2:</label>
+              <select
+                className="w-full p-2 rounded"
+                name="userId2"
+                value={playoffData.userId2}
+                onChange={(e)=>handlePlayoffInputChange(e)}
+              >
+                <option value="">Select a Player</option>
+                {players.map((player) => (
+                  <option key={player.id} value={player.id}>
+                    {player.name}
+                  </option>
+                ))}
+              </select>
+  
+              <label className="block text-white mt-4">Match Date:</label>
+              <input
+                type="date"
+                className="w-full p-2 rounded"
+                name="matchDate"
+                value={playoffData.matchDate}
+                onChange={(e)=>handlePlayoffInputChange(e)}
+              />
+  
+              <label className="block text-white mt-4">Match Time:</label>
+              <input
+                type="time"
+                className="w-full p-2 rounded"
+                name="matchTime"
+                value={playoffData.matchTime}
+                onChange={(e)=>handlePlayoffInputChange(e)}
+              />
+  
+              <label className="block text-white mt-4">Player 1 Score:</label>
+              <input
+                type="number"
+                className="w-full p-2 rounded"
+                name="user1Score"
+                value={playoffData.user1Score}
+                onChange={(e)=>handlePlayoffInputChange(e)}
+              />
+  
+              <label className="block text-white mt-4">Player 2 Score:</label>
+              <input
+                type="number"
+                className="w-full p-2 rounded"
+                name="user2Score"
+                value={playoffData.user2Score}
+                onChange={(e)=>handlePlayoffInputChange(e)}
+              />
+  
+              <label className="block text-white mt-4">Tie-Breaker Score (Player 1):</label>
+              <input
+                type="number"
+                className="w-full p-2 rounded"
+                name="tiebrekerScoreUser1"
+                value={playoffData.tiebrekerScoreUser1}
+                onChange={(e)=>handlePlayoffInputChange(e)}
+              />
+  
+              <label className="block text-white mt-4">Tie-Breaker Score (Player 2):</label>
+              <input
+                type="number"
+                className="w-full p-2 rounded"
+                name="tiebrekerScoreUser2"
+                value={playoffData.tiebrekerScoreUser2}
+                onChange={(e)=>handlePlayoffInputChange(e)}
+              />
+  
+              <label className="block text-white mt-4">Group:</label>
+              <input
+                type="number"
+                className="w-full p-2 rounded"
+                name="group"
+                value={playoffData.group}
+                onChange={(e)=>handlePlayoffInputChange(e)}
+              />
+              <label className="block text-white mt-4">PlayOffType:</label>
+
+              <input
+                type="number"
+                className="w-full p-2 rounded"
+                name="playOffType"
+                value={playoffData.playOffType}
+                onChange={(e)=>handlePlayoffInputChange(e)}
+              />
+
+              <button
+                className="bg-blue-500 text-white mt-4 p-2 rounded w-full"
+                onClick={(e)=>handlePlayoffSubmit(playoffData)}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </>
+      )}
     </>
   )
 }
