@@ -38,13 +38,11 @@ const Page = () => {
           withCredentials: true,
         });
   
-        console.log(response.data);
   
         if (response.data.status === 4) {
             setLoading(false);
             const token = response.data.data.token;
             const userData = response.data.data;
-            console.log(token);
             const expirationTime = Date.now() + 24 * 60 * 60 * 1000; 
             // Cookies.set("token", token, { expires: 1 / 8640 }); 
             Cookies.set("token_expiry", expirationTime.toString(), 
