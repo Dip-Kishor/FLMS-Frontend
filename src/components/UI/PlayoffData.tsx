@@ -261,7 +261,7 @@ const PlayoffData: React.FC<PlayoffFixturesProps> = ({ playoffData }) => {
           )}
         {season2Matches.length>0 &&(
           <>
-            <div className=" bg-[url('/GradientBG.jpg')] p-10 lg:p-10 rounded-lg shadow-lg w-full md:w-[800px] lg:w-[1200px] lg:h-150">
+            <div className=" bg-[#275c0b] p-10 lg:p-10 rounded-lg shadow-lg w-full md:w-[800px] lg:w-[1200px] lg:h-150">
                 <h1 className="text-center text-white text-2xl">Season 2 Playoffs</h1>
                 <div className='flex flex-col gap-3 lg:flex-row justify-between'>
                   <div className='flex flex-col w-full lg:w-1/3 items-center justify-center gap-3 lg:gap-40'>
