@@ -230,14 +230,16 @@ const Page = () => {
     console.log(fixture);
     setIsModalOpen(true);
   };
-  const handleFixtureInputChange = (key: keyof Fixtures,value:any)=> {
+  const handleFixtureInputChange = <K extends keyof Fixtures>(key: K, value: Fixtures[K]) => {
+    let newValue: Fixtures[K] = value;
     if (key === "user1Score" || key === "user2Score") {
-      value = parseInt(value);
+      newValue = parseInt(value as string) as Fixtures[K];
     }
-    if(selectedFixture){
-      setSelectedFixture({...selectedFixture,[key]:value})
+    if (selectedFixture) {
+      setSelectedFixture({ ...selectedFixture, [key]: newValue });
     }
   };
+  
   //Playoff creation
   const [playoffData, setPlayoffData] = useState<Fixtures>({
     id: 0, 
@@ -261,15 +263,16 @@ const Page = () => {
     imageUrl1: "string",
     imageUrl2: "string",
   });
-  const handlePlayoffFixtureChange =(key: keyof Fixtures, value:any)=>{
-    if (key === "userId1" || key === "userId2" || key==="playOffType") {
-      value = parseInt(value);
+  const handlePlayoffFixtureChange = (key: keyof Fixtures, value: string | number) => {
+    let newValue: string | number = value;
+    if (key === "userId1" || key === "userId2" || key === "playOffType") {
+      newValue = parseInt(value as string);
     }
     setPlayoffData((prevData) => ({
-      ...prevData,        
-      [key]: value,
+      ...prevData,
+      [key]: newValue,
     }));
-  }
+  };
   const handleCreateUpdate = async()=>{
     if(modeOfButton=="Update"){
       const updatedFixture = selectedFixture;
@@ -591,7 +594,7 @@ const Page = () => {
                     type='number'
                     className='bg-[#E9ECEF] p-2 rounded-lg w-1/2'
                     value={selectedFixture.user1Score || 0}
-                    onChange={(e)=>handleFixtureInputChange("user1Score",e.target.value)}
+                    onChange={(e)=>handleFixtureInputChange("user1Score",Number(e.target.value))}
                     min ="0"
                   />
                 </div>
@@ -617,7 +620,7 @@ const Page = () => {
                     type='number'
                     className='bg-[#E9ECEF] p-2 rounded-lg w-1/2'
                     value={selectedFixture.user2Score || 0}
-                    onChange={(e)=>handleFixtureInputChange("user2Score",e.target.value)}
+                    onChange={(e)=>handleFixtureInputChange("user2Score",Number(e.target.value))}
                     min="0"
                   />
                 </div>
