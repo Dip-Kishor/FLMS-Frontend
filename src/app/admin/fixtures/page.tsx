@@ -169,10 +169,6 @@ const Page = () => {
     }
   }
   const handleCreateFixture = async() =>{
-    console.log(selectedSeason);
-    console.log(noOfMatches);
-    console.log(noOfGroups);
-    console.log(selectedPlayers);
     if (!selectedSeason || !noOfMatches || !noOfGroups || selectedPlayers.length === 0) {
       showPopup("Please fill in all fields!","warning");
       return;
@@ -227,7 +223,6 @@ const Page = () => {
   const handleEditClick = (fixture : Fixtures) => {
     setModeOfButton("Update");
     setSelectedFixture(fixture);
-    console.log(fixture);
     setIsModalOpen(true);
   };
   const handleFixtureInputChange = <K extends keyof Fixtures>(key: K, value: Fixtures[K]) => {

@@ -6,10 +6,13 @@ import React, { useState } from "react";
 import LoginButton from "@/components/UI/LoginButton";
 import { usePopup } from "@/components/UI/Popup";
 import { useFlmsPopup } from "@/components/UI/FLMS.Popup";
+import { FaEye } from "react-icons/fa6"; // Import FontAwesome Eye Icon
+
 
 import axios from "axios";
 
 const Page = () => {
+  const [PaymentQr ,setPaymentQr] = useState<string | null>(null)
   const { showPopup } = usePopup();
   const { showFlmsPopup } = useFlmsPopup();
   const [imageFile, setFile] = useState<File | null>(null);
@@ -223,9 +226,35 @@ const Page = () => {
                 <LoginButton name="Register" />
               </div>
             </form>
+              <div className="flex w-full justify-center"> 
+                <img
+                  src="/ESewa.png"
+                  alt="QR"
+                  className="w-15 h-10 rounded-full shadow-lg transition mt-5 cursor-pointer"
+                  onClick={() => setPaymentQr("PaymentQr.jpg")}  // Added responsive sizes here
+                />
+              </div>
           </div>
         </div>
       </div>
+      {/* Modal for Team Image */}
+      {PaymentQr && (
+  <div className="fixed inset-0 flex items-center justify-center">
+    <div className="bg-white p-8 rounded-xl shadow-lg w-full md:w-[600px] lg:w-[400px] relative">
+      <button
+        className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
+        onClick={() => setPaymentQr(null)}
+      >
+        ✖
+      </button>
+      <img
+        src={PaymentQr}
+        alt="QR"
+        className="w-full h-auto rounded-lg md:w-[600px] lg:w-[800px]"  // Added responsive sizes here
+      />
+    </div>
+  </div>
+)}
     </>
   );
 };
