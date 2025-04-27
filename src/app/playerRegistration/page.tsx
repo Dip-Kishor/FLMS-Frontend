@@ -6,9 +6,6 @@ import React, { useState } from "react";
 import LoginButton from "@/components/UI/LoginButton";
 import { usePopup } from "@/components/UI/Popup";
 import { useFlmsPopup } from "@/components/UI/FLMS.Popup";
-import { FaEye } from "react-icons/fa6"; // Import FontAwesome Eye Icon
-
-
 import axios from "axios";
 
 const Page = () => {
