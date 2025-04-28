@@ -52,6 +52,73 @@ const HeroBanner = () => {
           src="/stadium1.jpg"
           alt="Stadium"
         />
+          <div className="space-y-6 w-full lg:w-[300px] absolute lg:right-0 top-5 lg:top-55 z-10 flex justify-between lg:block">
+          <div className="relative bg-[#F2ECDB] w-[170px] lg:w-[300px] text-center   p-2 lg:px-5 lg:py-2 shadow-2xl border border-gray-300 hover:scale-105 transform transition duration-300">
+          <div className="absolute hidden lg:block left-0 top-1/2 -translate-y-1/2 -translate-x-full w-0 h-0 border-t-[70px] border-b-[69px] border-r-[70px] border-t-transparent border-b-transparent border-r-[#F2ECDB]"></div>
+          {/* Top moving light */}
+          <div className="absolute top-0 left-0 w-full h-2  bg-gradient-to-r from-green-500 via-blue-400 to-red-500 animate-gradient"></div>
+          {/* Bottom moving light */}
+          {/* <div className="absolute bottom-0 left-0 w-full h-2  bg-gradient-to-r from-red-500 via-green-400 to-blue-500 animate-gradient"></div> */}
+            <h3 className="text-xl text-center font-bold text-gray-800 mb-2">Season 1</h3>
+            <div className="flex justify-evenly w-[100%]">
+              <div>
+                <img
+                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15 glowing-winner-image"
+                  src="/Sujan.jpg"
+                  alt="Stadium"
+                />
+                <p className="text-gray-600">Winner</p>
+              </div>
+              <div>
+                <img
+                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15  glowing-runnerup-image"
+                  src="/Samrat.jpg"
+                  alt="Stadium"
+                />
+                <p className="text-gray-600">Runner Up</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#F2ECDB]  p-2 lg:px-5 lg:py-2 w-[170px] lg:w-[300px]  shadow-2xl border border-gray-300 hover:scale-105 transform transition duration-300">
+          {/* Glowing animated triangle */}
+          <div className="absolute hidden lg:block left-0 top-1/2 -translate-y-1/2 -translate-x-full w-0 h-0 border-t-[70px] border-b-[69px] border-r-[70px] border-t-transparent border-b-transparent border-r-[#F2ECDB]"></div>
+          {/* Top moving light */}
+          <div className="absolute top-0 left-0 w-full h-2  bg-gradient-to-r from-green-500 via-blue-400 to-red-500 animate-gradient"></div>
+          {/* Bottom moving light */}
+          {/* <div className="absolute bottom-0 left-0 w-full h-2  bg-gradient-to-r from-red-500 via-green-400 to-blue-500 animate-gradient"></div> */}
+            <h3 className="text-xl text-center font-bold text-gray-800 mb-2">Season 2</h3>
+            <div className="flex justify-evenly w-[100%]">
+              <div>
+                <img
+                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15 glowing-winner-image"
+                  src="/Dip.jpg"
+                  alt="Stadium"
+                />
+                <p className="text-gray-600">Winner</p>
+              </div>
+              <div>
+                <img
+                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15  glowing-runnerup-image"
+                  src="/Sujan.jpg"
+                  alt="Stadium"
+                />
+                <p className="text-gray-600">Runner Up</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#F2ECDB] hidden lg:block  lg:p-9 w-[170px] lg:w-[300px]  shadow-2xl border border-gray-300 hover:scale-105 transform transition duration-300">
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full w-0 h-0 border-t-[68px] border-b-[67px] border-r-[70px] border-t-transparent border-b-transparent border-r-[#F2ECDB]"></div>
+           {/* Top moving light */}
+          <div className="absolute top-0 left-0 w-full h-2  bg-gradient-to-r from-green-500 via-blue-400 to-red-500 animate-gradient"></div>
+          {/* Bottom moving light */}
+          {/* <div className="absolute bottom-0 left-0 w-full h-2  bg-gradient-to-r from-red-500 via-green-400 to-blue-500 animate-gradient"></div> */}
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Season 3</h3>
+            <p className="text-gray-600">Comming Soon...</p>
+          </div>
+        </div>
+
       </div>
     </div>
   );

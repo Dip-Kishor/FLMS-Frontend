@@ -57,7 +57,7 @@ const Page = () => {
               "userData",
               JSON.stringify({
                 email: response.data.data.email,
-                name: response.data.data.name,
+                userName: response.data.data.userName,
                 role: response.data.data.role,
               }),
               { expires: 1, path: "/" }

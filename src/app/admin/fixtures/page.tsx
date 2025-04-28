@@ -307,6 +307,20 @@ const Page = () => {
       }
     }
   }
+  // 1. Group by date
+const groupedFixtures = fixtures.reduce((groups, fixture) => {
+  const date = fixture.matchDate;
+  if (!groups[date]) {
+    groups[date] = [];
+  }
+  groups[date].push(fixture);
+  return groups;
+}, {} as Record<string, typeof fixtures>);
+
+// 2. Sort dates
+const sortedDates = Object.keys(groupedFixtures).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+
+  
   //#endregion
   return (
     <>
@@ -348,51 +362,62 @@ const Page = () => {
             Fixtures
           </h2>
           {/* Fixture Table Start */}
-          <div className='text-center lg:flex justify-center py-5 px-10 overflow-x-auto'>
-          <table className="border border-[#BFAF92] border-collapse  text-[#5A4A3D] shadow-md text-center ">
-            <thead>
-              <tr className="border border-[#BFAF92] bg-[#E9ECEF] hover:bg-[#E9ECEF] transition">
-                {/* <th>ID</th> */}
-                <th className="border border-[#BFAF92] p-3 font-semibold">Season</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Match Date</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Match Time</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Player 1</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Score 1</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Score 2</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Player 2</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Group</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Postponed</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Completed</th>
-                <th className="border border-[#BFAF92] p-3 font-semibold">Action</th>
+          {sortedDates.map((date) => {
+  // 3. Sort inside each date by matchTime
+  const fixturesOnDate = groupedFixtures[date].sort((a, b) => {
+    return a.matchTime.localeCompare(b.matchTime);
+  });
+
+  return (
+    <div key={date} className="mb-8">
+      <h3 className="text-2xl font-semibold text-center mt-8">{date}</h3>
+      <div className='text-center lg:flex justify-center py-5 px-10 overflow-x-auto'>
+        <table className="border border-[#BFAF92] border-collapse text-[#5A4A3D] shadow-md text-center">
+          <thead>
+            <tr className="border border-[#BFAF92] bg-[#E9ECEF] hover:bg-[#E9ECEF] transition">
+              <th className="border border-[#BFAF92] p-3 font-semibold">Season</th>
+              <th className="border border-[#BFAF92] p-3 font-semibold">Match Time</th>
+              <th className="border border-[#BFAF92] p-3 font-semibold">Player 1</th>
+              <th className="border border-[#BFAF92] p-3 font-semibold">Score 1</th>
+              <th className="border border-[#BFAF92] p-3 font-semibold">Score 2</th>
+              <th className="border border-[#BFAF92] p-3 font-semibold">Player 2</th>
+              <th className="border border-[#BFAF92] p-3 font-semibold">Group</th>
+              <th className="border border-[#BFAF92] p-3 font-semibold">Postponed</th>
+              <th className="border border-[#BFAF92] p-3 font-semibold">Completed</th>
+              <th className="border border-[#BFAF92] p-3 font-semibold">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {fixturesOnDate.map((fixture) => (
+              <tr key={fixture.id} className="border border-[#BFAF92] bg-[#FFFFFF] hover:bg-[#E8D9B8] transition">
+                <td className="border border-[#BFAF92] p-3">{fixture.seasonId}</td>
+                <td className="border border-[#BFAF92] p-3">{fixture.matchTime}</td>
+                <td className="border border-[#BFAF92] p-3">{fixture.userName1}</td>
+                <td className="border border-[#BFAF92] p-3">{fixture.user1Score}</td>
+                <td className="border border-[#BFAF92] p-3">{fixture.user2Score}</td>
+                <td className="border border-[#BFAF92] p-3">{fixture.userName2}</td>
+                <td className="border border-[#BFAF92] p-3">{getGroup(fixture.group)}</td>
+                <td className="border border-[#BFAF92] p-3">{getYesNo(fixture.isPostponed)}</td>
+                <td className="border border-[#BFAF92] p-3">{getYesNo(fixture.isCompleted)}</td>
+                <td className="text-center p-2">
+                  <div className="flex flex-col justify-center items-center space-x-2">
+                    <FaPen
+                      className="text-blue-500 cursor-pointer"
+                      onClick={() => handleEditClick(fixture)}
+                    />
+                    {fixture.isPlayoff && getplayoff(fixture.playOffType)}
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {fixtures.map((fixture) => (
-                <tr className="border border-[#BFAF92] bg-[#FFFFFF] hover:bg-[#E8D9B8] transition" key={fixture.id}>
-                  <td className="border border-[#BFAF92] p-3 ">{fixture.seasonId}</td>
-                  <td className="border border-[#BFAF92] p-3 ">{fixture.matchDate}</td>
-                  <td className="border border-[#BFAF92] p-3 ">{fixture.matchTime}</td>
-                  <td className="border border-[#BFAF92] p-3 ">{fixture.userName1}</td>
-                  <td className="border border-[#BFAF92] p-3 ">{fixture.user1Score}</td>
-                  <td className="border border-[#BFAF92] p-3 ">{fixture.user2Score}</td>
-                  <td className="border border-[#BFAF92] p-3 ">{fixture.userName2}</td>
-                  <td className="border border-[#BFAF92] p-3 ">{getGroup(fixture.group)}</td>
-                  <td className="border border-[#BFAF92] p-3 ">{getYesNo(fixture.isPostponed)}</td>
-                  <td className="border border-[#BFAF92] p-3 ">{getYesNo(fixture.isCompleted)}</td>
-                  <td className="text-center p-2">
-                    <div className="flex flex-col justify-center items-center space-x-2">
-                      <FaPen
-                        className="text-blue-500 cursor-pointer"
-                        onClick={() => handleEditClick(fixture)}
-                      />
-                      {fixture.isPlayoff && getplayoff(fixture.playOffType)}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </div>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+})}
+
+
           {/* Fixture Table Close */}
           </>
         ):(

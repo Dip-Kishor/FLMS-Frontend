@@ -36,19 +36,42 @@ const Navbar: React.FC = () => {
     setScrolled(offset > 100);
   };
   useEffect(() => {
-    sessionStorage.getItem("token");
-    // const storedToken = sessionStorage.getItem("token");
-    // setToken(sessionStorage.getItem("token"));
-    window.addEventListener("scroll", handleScroll);
     const storedUserData = sessionStorage.getItem("userData");
-    if (storedUserData) {
+    const tokenExpiry = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token_expiry="))
+      ?.split("=")[1];
+
+    if (!storedUserData) {
+      // Check if token is expired
+      if (tokenExpiry && Date.now() < parseInt(tokenExpiry)) {
+        // Token is not expired, set userData from cookie
+        const userDataCookie = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("userData="))
+          ?.split("=")[1];
+
+        if (userDataCookie) {
+          try {
+            const parsedUserData = JSON.parse(decodeURIComponent(userDataCookie));
+            sessionStorage.setItem("userData", JSON.stringify(parsedUserData));
+            setUserData(parsedUserData);
+          } catch {
+            setUserData(null);
+          }
+        } else {
+          setUserData(null);
+        }
+      } else {
+        setUserData(null); 
+      }
+    } else {
       try {
         setUserData(JSON.parse(storedUserData));
       } catch {
         setUserData(null);
       }
     }
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
