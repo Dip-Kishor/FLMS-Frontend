@@ -61,17 +61,17 @@ const HeroBanner = () => {
           {/* <div className="absolute bottom-0 left-0 w-full h-2  bg-gradient-to-r from-red-500 via-green-400 to-blue-500 animate-gradient"></div> */}
             <h3 className="text-xl text-center font-bold text-gray-800 mb-2">Season 1</h3>
             <div className="flex justify-evenly w-[100%]">
-              <div>
+              <div className="flex flex-col items-center">
                 <img
-                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15 glowing-winner-image"
+                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15"
                   src="/Sujan.jpg"
                   alt="Stadium"
                 />
                 <p className="text-gray-600">Winner</p>
               </div>
-              <div>
+              <div className="flex flex-col items-center">
                 <img
-                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15  glowing-runnerup-image"
+                  className="w-10 h-10 text-center lg:w-15 rounded-2xl lg:h-15  "
                   src="/Samrat.jpg"
                   alt="Stadium"
                 />
@@ -89,17 +89,17 @@ const HeroBanner = () => {
           {/* <div className="absolute bottom-0 left-0 w-full h-2  bg-gradient-to-r from-red-500 via-green-400 to-blue-500 animate-gradient"></div> */}
             <h3 className="text-xl text-center font-bold text-gray-800 mb-2">Season 2</h3>
             <div className="flex justify-evenly w-[100%]">
-              <div>
+              <div className="flex flex-col items-center">
                 <img
-                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15 glowing-winner-image"
+                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15"
                   src="/Dip.jpg"
                   alt="Stadium"
                 />
                 <p className="text-gray-600">Winner</p>
               </div>
-              <div>
+              <div className="flex flex-col items-center">
                 <img
-                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15  glowing-runnerup-image"
+                  className="w-10 h-10 lg:w-15 rounded-2xl lg:h-15"
                   src="/Sujan.jpg"
                   alt="Stadium"
                 />

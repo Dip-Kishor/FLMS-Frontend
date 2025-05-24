@@ -226,13 +226,12 @@ const Navbar: React.FC = () => {
                   </div>
                 </div>
                 <button
-  className="bg-red-500 mt-3 w-full text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 disabled:opacity-50"
-  onClick={handleLogout}
-  disabled={isLoading} // Disable button while loading
->
-  {isLoading ? "Logging Out..." : "Log Out"}
-</button>
-
+                  className="bg-red-500 mt-3 w-full text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 disabled:opacity-50"
+                  onClick={handleLogout}
+                  disabled={isLoading} // Disable button while loading
+                >
+                  {isLoading ? "Logging Out..." : "Log Out"}
+                </button>
               </div>
             </div>
           )}
