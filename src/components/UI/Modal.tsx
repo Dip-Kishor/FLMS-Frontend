@@ -25,7 +25,7 @@ const Modal: React.FC<ModalProps> = ({
   footerButtons = [], // Default to an empty array if no buttons provided
 }) => {
   const modalSize = {
-    sm: "w-[300px]",
+    sm: "w-[350px]",
     md: "w-[500px]",
     lg: "w-[800px]",
   }[size];
